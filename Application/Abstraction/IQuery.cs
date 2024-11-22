@@ -3,3 +3,4 @@
 public interface IQuery<TResult>
 {
 }
+

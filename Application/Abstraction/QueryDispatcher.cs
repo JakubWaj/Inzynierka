@@ -2,7 +2,7 @@
 
 namespace Application.Abstraction;
 
-public class QueryDispatcher
+public class QueryDispatcher : IQueryDispatcher
 {
     private readonly IServiceProvider _serviceProvider;
 

@@ -2,5 +2,25 @@
 
 public enum Genre
 {
-    Drama,
+    Akcja,
+    Animacja,
+    AnimacjaDlaDoroslych,
+    Anime,
+    Biograficzny,
+    Basn,
+    CzarnaKomedia,
+    DlaDzieci,
+    Dokumentalny,
+    Dramat,
+    Obyczajowy,
+    SciFi,
+    Fantasy,
+    Przyrodniczy,
+    Erotyczny,
+    Romans,
+    Wojenny,
+    Western,
+    Przygodowy,
+    Thriller,
+    Musical,
 }

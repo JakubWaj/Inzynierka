@@ -1,6 +1,7 @@
 ﻿using Application.Abstraction;
 using Application.Features.Movies;
 using Application.Features.Movies.Queries;
+using Application.Features.Movies.Queries.GetMovie;
 using Application.Shared;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace API.Controllers;
 
 public class MovieController : BaseController
 {
-    private readonly IQueryHandler<GetMovieQuery,MovieDto> _queryDispatcher;
+    private readonly IQueryDispatcher _queryDispatcher;
 
-    public MovieController(IQueryHandler<GetMovieQuery, MovieDto> queryDispatcher)
+    public MovieController(IQueryDispatcher queryDispatcher)
     {
         _queryDispatcher = queryDispatcher;
     }
@@ -19,7 +20,8 @@ public class MovieController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetMovieAsync(Guid id)
     {
-        var movie = await _queryDispatcher.HandleAsync(new GetMovieQuery(id));
+        var movie = new GetMovieQuery(id);
+        var result = await _queryDispatcher.SendAsync(movie);
         return Ok(movie);
     }
 }

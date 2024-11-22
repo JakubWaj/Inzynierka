@@ -10,8 +10,8 @@ public class Movie
     public string Description { get; set; }
     public Genre Genre { get; set; }
     public DateTime ReleaseDate { get; set; }
-    public uint BoxOffice { get; set; }
-    public uint Duration { get; set; }
+    public int BoxOffice { get; set; }
+    public int Duration { get; set; }
     public ICollection<MovieCountry> CountryOfMovie { get; set; }
     public ICollection<Role> Cast { get; set; }
     public ICollection<Review> Reviews { get; set; }

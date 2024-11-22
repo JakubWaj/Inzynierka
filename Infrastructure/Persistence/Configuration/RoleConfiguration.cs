@@ -9,7 +9,7 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
     public void Configure(EntityTypeBuilder<Role> builder)
     {
-        builder.HasKey(x => new { x.PersonId, x.MovieId });
+        builder.HasKey(x => x.Id);
         builder.HasOne(x => x.Person)
             .WithMany(x => x.Roles)
             .HasForeignKey(x => x.PersonId)

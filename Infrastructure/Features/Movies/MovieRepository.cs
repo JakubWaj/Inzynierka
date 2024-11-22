@@ -12,7 +12,12 @@ public class MovieRepository : IMovieRepository
     {
         _context = context;
     }
-    
+
+    public async Task<IEnumerable<Movie>> GetAllAsync()
+    {
+        return await _context.Movies.ToListAsync();
+    }
+
     public async Task AddAsync(Movie movie)
     {
         await _context.Movies.AddAsync(movie);

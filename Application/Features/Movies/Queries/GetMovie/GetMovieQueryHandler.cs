@@ -1,6 +1,6 @@
-﻿using Application.Shared;
+﻿using Application.Features.Exceptions;
 
-namespace Application.Features.Movies.Queries;
+namespace Application.Features.Movies.Queries.GetMovie;
 
 public class GetMovieQueryHandler : Abstraction.IQueryHandler<GetMovieQuery,MovieDto>
 {
@@ -12,6 +12,10 @@ public class GetMovieQueryHandler : Abstraction.IQueryHandler<GetMovieQuery,Movi
     }
     public async Task<MovieDto> HandleAsync(GetMovieQuery query)
     {
+        if(!(await _repository.ExistsAsync(query.Id)))
+        {
+            throw new NotFoundException(query.Id.ToString());
+        }
         var movie = await _repository.GetAsync(query.Id);
         return new MovieDto(movie.Id,movie.Title);
     }
