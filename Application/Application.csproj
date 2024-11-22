@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.10.0" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+      <PackageReference Include="Scrutor" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\Movies\Exceptions\" />
+      <Folder Include="Features\People\Commands\CreatePerson\" />
+      <Folder Include="Features\People\Commands\DeletePerson\" />
+      <Folder Include="Features\People\Commands\UpdatePerson\" />
+      <Folder Include="Features\People\Exceptions\" />
+      <Folder Include="Features\People\Queries\GetPeople\" />
+      <Folder Include="Features\People\Queries\GetPerson\" />
+      <Folder Include="Features\Reviews\Commands\" />
+      <Folder Include="Features\Reviews\Exceptions\" />
+      <Folder Include="Features\Reviews\Queries\" />
+      <Folder Include="Features\Roles\Commands\" />
+      <Folder Include="Features\Roles\Exceptions\" />
+      <Folder Include="Features\Roles\Queries\" />
+      <Folder Include="Features\Users\Commands\" />
+      <Folder Include="Features\Users\Exceptions\" />
+      <Folder Include="Features\Users\Queries\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+</Project>
