@@ -38,6 +38,11 @@ public class PersonRepository : IPersonRepository
         return await _context.People.SingleOrDefaultAsync(x=>x.Id==Id);
     }
 
+    public async Task<IEnumerable<Person>> GetAllAsync()
+    {
+        return await _context.People.ToListAsync();
+    }
+
     public async Task<bool> ExistsAsync(Guid Id)
     {
         return await _context.People.AnyAsync(x=>x.Id==Id);

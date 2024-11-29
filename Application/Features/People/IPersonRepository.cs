@@ -8,5 +8,6 @@ public interface IPersonRepository
     Task UpdateAsync(Person person);
     Task DeleteAsync(Guid Id);
     Task<Person> GetAsync(Guid Id);
+    Task<IEnumerable<Person>> GetAllAsync();
     Task<bool> ExistsAsync(Guid Id);
 }
