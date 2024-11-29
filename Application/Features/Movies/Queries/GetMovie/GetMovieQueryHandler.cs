@@ -17,6 +17,6 @@ public class GetMovieQueryHandler : Abstraction.IQueryHandler<GetMovieQuery,Movi
             throw new NotFoundException(query.Id.ToString());
         }
         var movie = await _repository.GetAsync(query.Id);
-        return new MovieDto(movie.Id,movie.Title);
+        return new MovieDto(movie.Id,movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration);
     }
 }

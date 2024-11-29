@@ -11,4 +11,5 @@ public class Role
     public virtual Movie Movie { get; set; }
     public MovieProductionRole MovieProductionRole { get; set; }
     public string? Character { get; set; }
+    public ICollection<RoleReview> Reviews { get; set; }
 }

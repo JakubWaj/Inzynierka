@@ -17,15 +17,9 @@
 
     <ItemGroup>
       <Folder Include="Features\Movies\Exceptions\" />
-      <Folder Include="Features\People\Commands\CreatePerson\" />
-      <Folder Include="Features\People\Commands\DeletePerson\" />
-      <Folder Include="Features\People\Commands\UpdatePerson\" />
       <Folder Include="Features\People\Exceptions\" />
-      <Folder Include="Features\People\Queries\GetPeople\" />
-      <Folder Include="Features\People\Queries\GetPerson\" />
-      <Folder Include="Features\Reviews\Commands\" />
       <Folder Include="Features\Reviews\Exceptions\" />
-      <Folder Include="Features\Reviews\Queries\" />
+      <Folder Include="Features\RoleReview\" />
       <Folder Include="Features\Roles\Commands\" />
       <Folder Include="Features\Roles\Exceptions\" />
       <Folder Include="Features\Roles\Queries\" />

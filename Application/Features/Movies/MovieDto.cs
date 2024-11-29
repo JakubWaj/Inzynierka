@@ -1,3 +1,5 @@
-﻿namespace Application.Features.Movies;
+﻿using Domain.Common.Enums;
 
-public record MovieDto(Guid Id,string Title);
+namespace Application.Features.Movies;
+
+public record MovieDto(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration);

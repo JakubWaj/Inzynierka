@@ -7,4 +7,5 @@ public class User
     public string Password { get; set; }
     public string Email { get; set; }
     public ICollection<Review> Reviews { get; set; }
+    public ICollection<RoleReview> RoleReviews { get; set; }
 }
