@@ -1,6 +1,8 @@
-﻿namespace Application.Features.Reviews;
+﻿using Application.Abstraction;
 
-public class ReviewDto
+namespace Application.Features.Reviews.Commands.UpdateReview;
+
+public class UpdateReviewCommand : ICommand<bool>
 {
     public Guid Id { get; set; }
     public string Comment { get; set; }
