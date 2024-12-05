@@ -1,10 +1,16 @@
-﻿using Application.Features.Movies;
+﻿using Application.Features.Country;
+using Application.Features.MovieCountry;
+using Application.Features.Movies;
 using Application.Features.People;
 using Application.Features.Reviews;
+using Application.Features.Roles;
 using Application.Features.Users;
+using Infrastructure.Features.Country;
+using Infrastructure.Features.MovieCountry;
 using Infrastructure.Features.Movies;
 using Infrastructure.Features.People;
 using Infrastructure.Features.Reviews;
+using Infrastructure.Features.Roles;
 using Infrastructure.Features.Users;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +24,11 @@ public static class Extensions
         services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<ICountryRepository, CountryRepository>();
+        services.AddScoped<IMovieCountryRepository, MovieCountryRepository>();
+        services.AddScoped<ICountryRepository, CountryRepository>();
+        
         return services;
     }
 }

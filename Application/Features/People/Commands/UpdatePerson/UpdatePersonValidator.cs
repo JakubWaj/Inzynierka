@@ -4,7 +4,7 @@ namespace Application.Features.People.Commands.UpdatePerson;
 
 public class UpdatePersonValidator : AbstractValidator<UpdatePersonCommand>
 {
-    UpdatePersonValidator()
+    public UpdatePersonValidator()
     {
         RuleFor(x => x.FirstName)
             .NotEmpty().WithMessage("First name is required")

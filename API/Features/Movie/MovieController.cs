@@ -6,6 +6,9 @@ using Application.Features.Movies.Commands.UpdateMovie;
 using Application.Features.Movies.Queries;
 using Application.Features.Movies.Queries.GetAllMovies;
 using Application.Features.Movies.Queries.GetMovie;
+using Application.Features.Movies.Queries.SearchMovieByTitle;
+using Application.Features.Movies.Queries.SearchMovieByYear;
+using Application.Features.Movies.Queries.SearchMoviesByGenres;
 using Application.Shared;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,4 +81,32 @@ public class MovieController : BaseController
         var result = await _commandDispatcher.SendAsync(command);
         return Ok(result);
     }
+    
+    [HttpGet("title")]
+    public async Task<IActionResult> SearchMoviesAsync( SearchByTitleRequest request)
+    {
+        
+        var query = new SearchMovieByTitleQuery(){Title = request.Title};
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
+    
+    [HttpGet("genre")]
+    public async Task<IActionResult> SearchMoviesByGenreAsync(SearchByGenreRequest request)
+    {
+        
+        var query = new SearchMoviesByGenresQuery(){Genre = request.Genre};
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
+    
+    [HttpGet("releaseYear")]
+    public async Task<IActionResult> SearchMoviesByReleaseYearAsync(SearchByReleaseYearRequest request)
+    {
+        
+        var query = new SearchMovieByYearQuery(){Year = request.ReleaseYear};
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
+    
 }

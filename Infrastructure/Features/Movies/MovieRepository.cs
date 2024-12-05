@@ -1,4 +1,5 @@
 ﻿using Application.Features.Movies;
+using Domain.Common.Enums;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -50,5 +51,27 @@ public class MovieRepository : IMovieRepository
     public Task<bool> ExistsAsyncWithTheSameTitle(string Title)
     {
         return _context.Movies.AnyAsync(x=>x.Title==Title);
+    }
+
+    public async Task<IEnumerable<Movie>> GetByTitleAsync(string Title)
+    {
+        return await _context.Movies.Where(x=>x.Title.Contains(Title)).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Movie>> GetByGenreAsync(string Genre)
+    {
+        if (!Enum.TryParse<Genre>(Genre, out var parsedGenre))
+        {
+            throw new ArgumentException($"Invalid genre: {Genre}");
+        }
+
+        return await _context.Movies
+            .Where(x => x.Genre == parsedGenre)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate)
+    {
+        return await _context.Movies.Where(x=>x.ReleaseDate.Year==ReleaseDate).ToListAsync();
     }
 }

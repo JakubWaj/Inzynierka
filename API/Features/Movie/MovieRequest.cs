@@ -11,3 +11,18 @@ public record MovieRequest
     public int BoxOffice { get; set; }
     public int Duration { get; set; }
 }
+
+public record SearchByTitleRequest
+{
+    public string Title { get; set; }
+}
+
+public record SearchByGenreRequest
+{
+    public string Genre { get; set; }
+}
+
+public record SearchByReleaseYearRequest
+{
+    public int ReleaseYear { get; set; }
+}

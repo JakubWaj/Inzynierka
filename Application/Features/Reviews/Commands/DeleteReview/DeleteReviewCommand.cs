@@ -1,6 +1,8 @@
-﻿namespace Application.Features.Reviews.Commands.DeleteReview;
+﻿using Application.Abstraction;
 
-public class DeleteReviewCommand
+namespace Application.Features.Reviews.Commands.DeleteReview;
+
+public class DeleteReviewCommand : ICommand<bool>
 {
-    
+    public Guid Id { get; set; }
 }

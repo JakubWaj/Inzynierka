@@ -16,6 +16,7 @@ public static class Extensions
         services.AddScoped<ICommandDispatcher,CommandDispatcher>();
         services.AddScoped<IQueryDispatcher, QueryDispatcher>();
         services.Decorate<ICommandDispatcher, CommandDispatcherDecoratorHandler>();
+
         services.AddValidatorsFromAssemblyContaining(typeof(ApplicationReference), ServiceLifetime.Transient);
         var applicationAssembly = typeof(IQueryHandler<,>).Assembly;
         return services;

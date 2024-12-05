@@ -1,6 +1,11 @@
-﻿using Infrastructure.Features;
+﻿using Application.Security;
+using Domain.Entities;
+using Infrastructure.Auth;
+using Infrastructure.Features;
+using Infrastructure.Features.Users.Security;
 using Infrastructure.Middleware;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 namespace Infrastructure;
@@ -15,6 +20,12 @@ public static class Extensions
         services.AddPersistence(configuration);
         services.AddInfrastructureFeatures();
         services.AddScoped<ExceptionMiddleware>();
+        services.AddAuth(configuration);
+        services.AddTransient<ExceptionMiddleware>();
+        services
+            .AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>()
+            .AddSingleton<IPasswordManager, PasswordManager>();
+        services.AddHttpContextAccessor();
         return services;
     }
 

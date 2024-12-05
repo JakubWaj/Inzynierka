@@ -11,4 +11,8 @@ public interface IMovieRepository
     Task DeleteAsync(Guid Id);
     Task<bool> ExistsAsync(Guid Id);
     Task<bool> ExistsAsyncWithTheSameTitle(string Title);
+    Task<IEnumerable<Movie>> GetByTitleAsync(string Title);
+    Task<IEnumerable<Movie>> GetByGenreAsync(string Genre);
+    Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate);
+    
 }

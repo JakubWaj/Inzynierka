@@ -16,16 +16,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Features\Country\Exceptions\" />
+      <Folder Include="Features\MovieCountry\Exceptions\" />
+      <Folder Include="Features\MovieCountry\Queries\" />
       <Folder Include="Features\Movies\Exceptions\" />
       <Folder Include="Features\People\Exceptions\" />
       <Folder Include="Features\Reviews\Exceptions\" />
-      <Folder Include="Features\RoleReview\" />
-      <Folder Include="Features\Roles\Commands\" />
+      <Folder Include="Features\RoleReview\Commands\" />
+      <Folder Include="Features\RoleReview\Exceptions\" />
+      <Folder Include="Features\RoleReview\Queries\" />
       <Folder Include="Features\Roles\Exceptions\" />
-      <Folder Include="Features\Roles\Queries\" />
       <Folder Include="Features\Users\Commands\" />
-      <Folder Include="Features\Users\Exceptions\" />
-      <Folder Include="Features\Users\Queries\" />
     </ItemGroup>
 
     <ItemGroup>
