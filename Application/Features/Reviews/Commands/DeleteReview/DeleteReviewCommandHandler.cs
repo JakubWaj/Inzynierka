@@ -1,5 +1,6 @@
 ﻿using Application.Abstraction;
 using Application.Features.Exceptions;
+using Application.Features.Reviews.Exceptions;
 
 namespace Application.Features.Reviews.Commands.DeleteReview;
 
@@ -19,6 +20,11 @@ public class DeleteReviewCommandHandler : ICommandHandler<DeleteReviewCommand, b
         if (review == null)
         {
             throw new NotFoundException("Review not found");
+        }
+
+        if (review.UserId != command.UserId)
+        {
+            throw new ForbiddenException("You are not allowed to delete this review");
         }
         
         await _reviewRepository.DeleteAsync(command.Id);

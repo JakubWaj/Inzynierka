@@ -10,4 +10,5 @@ public interface IReviewRepository
     Task UpdateAsync(Review movie);
     Task DeleteAsync(Guid Id);
     Task<bool> ExistsAsync(Guid Id);
+    Task<bool> ExistsAsync(Guid MovieId,Guid UserId);
 }

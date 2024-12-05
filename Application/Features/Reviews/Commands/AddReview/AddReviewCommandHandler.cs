@@ -15,6 +15,11 @@ public class AddReviewCommandHandler : ICommandHandler<AddReviewCommand, bool>
     public async Task<bool> HandleAsync(AddReviewCommand command)
     {
         //dodac sprawdzenie ze user juz zrobil review filmu
+        var reviewExists = await _reviewRepository.ExistsAsync(command.MovieId, command.UserId);
+        if (reviewExists)
+        {
+            throw new Exception("User already reviewed this movie");
+        }
         
         var review = new Review
         {

@@ -47,4 +47,9 @@ public class ReviewRepository : IReviewRepository
     {
         return await _context.Reviews.AnyAsync(x=>x.Id==Id);
     }
+
+    public async Task<bool> ExistsAsync(Guid MovieId, Guid UserId)
+    {
+        return await _context.Reviews.AnyAsync(x=>x.MovieId==MovieId && x.UserId==UserId);
+    }
 }

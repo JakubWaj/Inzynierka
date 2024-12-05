@@ -10,6 +10,7 @@ public record MovieRequest
     public DateTime ReleaseDate { get; set; }
     public int BoxOffice { get; set; }
     public int Duration { get; set; }
+    public string[] Countries { get; set; }
 }
 
 public record SearchByTitleRequest
@@ -25,4 +26,8 @@ public record SearchByGenreRequest
 public record SearchByReleaseYearRequest
 {
     public int ReleaseYear { get; set; }
+}
+public record SearchByCountryRequest
+{
+    public Guid Country { get; set; }
 }

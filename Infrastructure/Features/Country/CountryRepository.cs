@@ -28,6 +28,14 @@ public class CountryRepository : ICountryRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Domain.Entities.Country>> GetCountiesByName(string[] counties)
+    {
+        return await _context
+            .Countries
+            .Where(x => counties.Contains(x.Name))
+            .ToListAsync();
+    }
+
     public async Task AddAsync(Domain.Entities.Country country)
     {
         await _context.Countries.AddAsync(country);

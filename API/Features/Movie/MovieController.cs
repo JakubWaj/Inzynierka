@@ -1,18 +1,17 @@
-﻿using Application.Abstraction;
-using Application.Features.Movies;
+﻿using API.Controllers;
+using Application.Abstraction;
 using Application.Features.Movies.Commands.CreateMovie;
 using Application.Features.Movies.Commands.DeleteMovie;
 using Application.Features.Movies.Commands.UpdateMovie;
-using Application.Features.Movies.Queries;
 using Application.Features.Movies.Queries.GetAllMovies;
 using Application.Features.Movies.Queries.GetMovie;
+using Application.Features.Movies.Queries.GetMovieByCountry;
 using Application.Features.Movies.Queries.SearchMovieByTitle;
 using Application.Features.Movies.Queries.SearchMovieByYear;
 using Application.Features.Movies.Queries.SearchMoviesByGenres;
-using Application.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
+namespace API.Features.Movie;
 
 public class MovieController : BaseController
 {
@@ -55,7 +54,8 @@ public class MovieController : BaseController
             Genre = movieRequest.Genre,
             ReleaseDate = movieRequest.ReleaseDate,
             BoxOffice = movieRequest.BoxOffice,
-            Duration = movieRequest.Duration
+            Duration = movieRequest.Duration,
+            Countries = movieRequest.Countries
         };
         
         var result = await _commandDispatcher.SendAsync(command);
@@ -108,5 +108,16 @@ public class MovieController : BaseController
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }
+    
+    [HttpGet("country")]
+    public async Task<IActionResult> SearchMoviesByCountryAsync(SearchByCountryRequest request)
+    {
+        
+        var query = new GetMovieByCountryQuery(){ CountryId = request.Country};
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
+    
+    
     
 }

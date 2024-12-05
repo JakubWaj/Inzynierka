@@ -16,7 +16,7 @@ public class MovieRepository : IMovieRepository
 
     public async Task<IEnumerable<Movie>> GetAllAsync()
     {
-        return await _context.Movies.ToListAsync();
+        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).ToListAsync();
     }
 
     public async Task AddAsync(Movie movie)
@@ -40,7 +40,7 @@ public class MovieRepository : IMovieRepository
 
     public async Task<Movie> GetAsync(Guid Id)
     {
-        return await _context.Movies.SingleOrDefaultAsync(x=>x.Id==Id);
+        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).SingleOrDefaultAsync(x=>x.Id==Id);
     }
 
     public async Task<bool> ExistsAsync(Guid Id)
@@ -55,7 +55,7 @@ public class MovieRepository : IMovieRepository
 
     public async Task<IEnumerable<Movie>> GetByTitleAsync(string Title)
     {
-        return await _context.Movies.Where(x=>x.Title.Contains(Title)).ToListAsync();
+        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).Where(x=>x.Title.Contains(Title)).ToListAsync();
     }
 
     public async Task<IEnumerable<Movie>> GetByGenreAsync(string Genre)
@@ -66,12 +66,19 @@ public class MovieRepository : IMovieRepository
         }
 
         return await _context.Movies
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
             .Where(x => x.Genre == parsedGenre)
             .ToListAsync();
     }
 
     public async Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate)
     {
-        return await _context.Movies.Where(x=>x.ReleaseDate.Year==ReleaseDate).ToListAsync();
+        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).Where(x=>x.ReleaseDate.Year==ReleaseDate).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Movie>> GetByCountryAsync(Guid CountryId)
+    {
+        return await _context.Movies.Include(x=>x.CountryOfMovie).Where(x=>x.CountryOfMovie.Any(x=>x.CountryId==CountryId)).ToListAsync();
     }
 }

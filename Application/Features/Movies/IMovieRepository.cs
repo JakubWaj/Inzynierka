@@ -14,5 +14,6 @@ public interface IMovieRepository
     Task<IEnumerable<Movie>> GetByTitleAsync(string Title);
     Task<IEnumerable<Movie>> GetByGenreAsync(string Genre);
     Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate);
+    Task<IEnumerable<Movie>> GetByCountryAsync(Guid CountryId);
     
 }

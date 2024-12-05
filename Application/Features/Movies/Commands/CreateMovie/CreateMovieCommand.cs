@@ -13,4 +13,5 @@ public class CreateMovieCommand : ICommand<bool>
     public DateTime ReleaseDate { get; set; }
     public int BoxOffice { get; set; }
     public int Duration { get; set; }
+    public string[] Countries { get; set; }
 }

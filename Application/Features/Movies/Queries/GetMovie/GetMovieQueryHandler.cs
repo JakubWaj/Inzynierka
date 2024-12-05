@@ -1,4 +1,5 @@
 ﻿using Application.Features.Exceptions;
+using Application.Features.MovieCountry;
 
 namespace Application.Features.Movies.Queries.GetMovie;
 
@@ -17,6 +18,6 @@ public class GetMovieQueryHandler : Abstraction.IQueryHandler<GetMovieQuery,Movi
             throw new NotFoundException(query.Id.ToString());
         }
         var movie = await _repository.GetAsync(query.Id);
-        return new MovieDto(movie.Id,movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration);
+        return new MovieDto(movie.Id,movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration, movie.CountryOfMovie.CountriesToDto());
     }
 }
