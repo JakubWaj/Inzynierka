@@ -1,5 +1,6 @@
 ﻿using Application.Abstraction;
 using Application.Features.Exceptions;
+using Application.Features.Reviews.Exceptions;
 using Domain.Entities;
 
 namespace Application.Features.Reviews.Commands.UpdateReview;
@@ -18,15 +19,14 @@ public class UpdateReviewCommandHandler : ICommandHandler<UpdateReviewCommand,bo
         {
             throw new NotFoundException("Review not found");
         }
-        var review = new Review()
+        var oldReview = await _reviewRepository.GetAsync(command.Id);
+        if (oldReview.UserId != command.UserId)
         {
-            Id = command.Id,
-            Comment = command.Comment,
-            Rating = command.Rating,
-            MovieId = command.MovieId,
-            UserId = command.UserId
-        };
-        await _reviewRepository.UpdateAsync(review);
+            throw new ForbiddenException("You are not allowed to update this review");
+        }
+        oldReview.Comment = command.Comment;
+        oldReview.Rating = command.Rating;
+        await _reviewRepository.UpdateAsync(oldReview);
         return true;
     }
     

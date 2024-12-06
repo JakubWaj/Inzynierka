@@ -91,11 +91,11 @@ public class MovieController : BaseController
         return Ok(result);
     }
     
-    [HttpGet("genre")]
-    public async Task<IActionResult> SearchMoviesByGenreAsync(SearchByGenreRequest request)
+    [HttpGet("genre/{genre}")]
+    public async Task<IActionResult> SearchMoviesByGenreAsync(string genre)
     {
         
-        var query = new SearchMoviesByGenresQuery(){Genre = request.Genre};
+        var query = new SearchMoviesByGenresQuery(){Genre = genre};
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }
