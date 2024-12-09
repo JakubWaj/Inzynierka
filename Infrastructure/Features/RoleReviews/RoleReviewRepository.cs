@@ -16,7 +16,7 @@ public class RoleReviewRepository : IRoleReviewRepository
     public async Task<RoleReview> GetAsync(Guid Id)
     {
         return await _context
-            .RoleReviews
+            .RoleReviews.Include(x=>x.Role).ThenInclude(x=>x.Person)
             .FirstOrDefaultAsync(x=>x.Id==Id);
     }
 
@@ -24,6 +24,14 @@ public class RoleReviewRepository : IRoleReviewRepository
     {
         return await _context
             .RoleReviews
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<RoleReview>> GetAllAsyncFromRole(Guid Id)
+    {
+        return await _context
+            .RoleReviews
+            .Where(x => x.RoleId == Id)
             .ToListAsync();
     }
 
@@ -49,5 +57,10 @@ public class RoleReviewRepository : IRoleReviewRepository
     public async Task<bool> ExistsAsync(Guid Id)
     {
         return await _context.RoleReviews.AnyAsync(x => x.Id == Id);
+    }
+
+    public async Task<bool> ExistsFromUser(Guid UserId, Guid RoleId)
+    {
+        return await _context.RoleReviews.Where(x => x.UserId == UserId).AnyAsync(x => x.RoleId == RoleId);
     }
 }

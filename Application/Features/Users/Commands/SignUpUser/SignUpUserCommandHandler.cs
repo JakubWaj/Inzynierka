@@ -23,12 +23,11 @@ internal class SignUpUserCommandHandler : ICommandHandler<SignUpUserCommand, boo
     {
         var user = await _accountRepository.GetByEmail(command.Email);
         var emailUnique = await _accountRepository.ExistsByEmail(command.Email);
-
-        if (emailUnique)
+        var loginUnique = await _accountRepository.ExistsByLogin(command.Login);
+        if (emailUnique || loginUnique)
         {
             throw new UserAlreadyExistsException();
         }
-
         var securedPassword = _passwordManager.Secure(command.Password);
         User newUser = new User()
         {

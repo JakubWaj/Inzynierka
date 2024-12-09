@@ -82,13 +82,12 @@ public class MovieController : BaseController
         return Ok(result);
     }
     
-    [HttpGet("title")]
-    public async Task<IActionResult> SearchMoviesAsync( SearchByTitleRequest request)
+    [HttpGet("title/{title}")]
+    public async Task<IActionResult> SearchMoviesAsync(string title)
     {
-        
-        var query = new SearchMovieByTitleQuery(){Title = request.Title};
+        var query = new SearchMovieByTitleQuery(){Title = title};
         var result = await _queryDispatcher.SendAsync(query);
-        return Ok(result);
+        return Ok(result); 
     }
     
     [HttpGet("genre/{genre}")]
@@ -100,20 +99,20 @@ public class MovieController : BaseController
         return Ok(result);
     }
     
-    [HttpGet("releaseYear")]
-    public async Task<IActionResult> SearchMoviesByReleaseYearAsync(SearchByReleaseYearRequest request)
+    [HttpGet("releaseYear/{releaseYear}")]
+    public async Task<IActionResult> SearchMoviesByReleaseYearAsync(int releaseYear)
     {
         
-        var query = new SearchMovieByYearQuery(){Year = request.ReleaseYear};
+        var query = new SearchMovieByYearQuery(){Year = releaseYear};
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }
     
-    [HttpGet("country")]
-    public async Task<IActionResult> SearchMoviesByCountryAsync(SearchByCountryRequest request)
+    [HttpGet("country/{countryId}")]
+    public async Task<IActionResult> SearchMoviesByCountryAsync(Guid countryId)
     {
         
-        var query = new GetMovieByCountryQuery(){ CountryId = request.Country};
+        var query = new GetMovieByCountryQuery(){ CountryId = countryId};
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }

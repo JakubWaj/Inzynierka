@@ -21,7 +21,6 @@
       <Folder Include="Features\MovieCountry\Queries\" />
       <Folder Include="Features\Movies\Exceptions\" />
       <Folder Include="Features\People\Exceptions\" />
-      <Folder Include="Features\RoleReview\Exceptions\" />
       <Folder Include="Features\Roles\Exceptions\" />
       <Folder Include="Features\Users\Commands\" />
     </ItemGroup>

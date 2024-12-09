@@ -8,7 +8,6 @@ public static class CountryMapper
         {
             Id = entity.Id,
             Name = entity.Name,
-            Productions = entity.Productions
         };
     }
     

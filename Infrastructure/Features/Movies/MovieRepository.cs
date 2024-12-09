@@ -79,6 +79,6 @@ public class MovieRepository : IMovieRepository
 
     public async Task<IEnumerable<Movie>> GetByCountryAsync(Guid CountryId)
     {
-        return await _context.Movies.Include(x=>x.CountryOfMovie).Where(x=>x.CountryOfMovie.Any(x=>x.CountryId==CountryId)).ToListAsync();
+        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country ).Where(x=>x.CountryOfMovie.Any(x=>x.CountryId==CountryId)).ToListAsync();
     }
 }

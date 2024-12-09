@@ -1,6 +1,7 @@
-﻿namespace Application.Features.RoleReview;
+﻿using Domain.Common.Enums;
+using Domain.Entities;
 
-public class RoleReviewDto
-{
-    
-}
+namespace Application.Features.RoleReview;
+
+public record RoleReviewDto(int Rating,Guid RoleId,MovieProductionRole ProductionRole,string FirstName,string LastName);
+public record RoleReviewsDto(double Rating,Guid RoleId,MovieProductionRole ProductionRole,string FirstName,string LastName);
