@@ -16,7 +16,7 @@ public class GetFriendsRequestsQueryHandler : IQueryHandler<GetFriendsRequestsQu
     {
         var userId = await _userRepository.GetFriendsRequestsAsync(query.UserId);
         var users = await _userRepository.GetFriendsRequestsUsersAsync(query.UserId);
-        var xd = users.Join(userId, u => u.Id, i => i.FriendId, (u, i) => new {u,i});
+        var xd = users.Join(userId, u => u.Id, i => i.UserId, (u, i) => new {u,i});
         List<UserFriendRequestDto> userFriendRequestDtos = xd.Select(x=>new UserFriendRequestDto(x.i.Id,x.u.Login,x.u.Email)).ToList();
         return userFriendRequestDtos;
     }

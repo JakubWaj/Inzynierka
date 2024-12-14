@@ -20,4 +20,5 @@ public interface IUserRepository
     Task<IEnumerable<User>> GetFriendsRequestsUsersAsync(Guid UserId);
     Task RespondToFriendRequestAsync(Guid Id,Status status);
     Task<IEnumerable<User>> GetFriendsAsync(Guid UserId);
+    Task<UserFriends> GetRequestAsync(Guid UserId,Guid FriendId);
 }

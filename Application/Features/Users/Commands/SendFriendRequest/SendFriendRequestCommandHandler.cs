@@ -20,6 +20,14 @@ public class SendFriendRequestCommandHandler : ICommandHandler<SendFriendRequest
         {
             return false;
         }
+        var existing = await _userRepository.GetRequestAsync(command.UserId,command.FriendId);
+        if (existing != null)
+        {
+            if (existing.Status == Domain.Common.Enums.Status.Accepted || existing.Status == Domain.Common.Enums.Status.Pending)
+            {
+                return false;
+            }
+        }
         var friendRequest = new UserFriends()
         {
             FriendId = command.FriendId,

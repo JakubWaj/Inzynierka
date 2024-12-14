@@ -13,7 +13,9 @@ public static class RoleMapper
             PersonId = review.PersonId,
             MovieId = review.MovieId,
             MovieProductionRole = review.MovieProductionRole,
-            Character = review.Character
+            Character = review.Character,
+            Score = (review.Reviews.Count>0? review.Reviews.Average(x => x.Rating):0),
+            NumberOfReviews = review.Reviews.Count
         };
     }
     public static IEnumerable<RoleDto> ToDto(this IEnumerable<Role> roles)

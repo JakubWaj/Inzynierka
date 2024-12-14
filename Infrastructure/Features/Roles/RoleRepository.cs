@@ -16,12 +16,12 @@ public class RoleRepository : IRoleRepository
     
     public async Task<IEnumerable<Role>> GetAllAsync()
     {
-        return await _context.Roles.ToListAsync();
+        return await _context.Roles.Include(x=>x.Reviews).ToListAsync();
     }
 
     public async Task<IEnumerable<Role>> GetAllFromPerson(Guid personId)
     {
-        return await _context.Roles.Where(x=>x.PersonId==personId).ToListAsync();
+        return await _context.Roles.Include(x=>x.Reviews).Where(x=>x.PersonId==personId).ToListAsync();
     }
 
     public async Task UpdateAsync(Role role)
@@ -50,7 +50,7 @@ public class RoleRepository : IRoleRepository
 
     public async Task<bool> ExistsAsync(Guid Id)
     {
-        return await _context.Roles.AnyAsync(x=>x.Id==Id);
+        return await _context.Roles.Include(x=>x.Reviews).AnyAsync(x=>x.Id==Id);
     }
 }
 

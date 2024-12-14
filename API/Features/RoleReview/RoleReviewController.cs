@@ -41,13 +41,15 @@ public class RoleReviewController : BaseController
       [Authorize]
       public async Task<IActionResult> UpdateRoleReview(RoleReviewRequest request)
       {
-          var id = Guid.NewGuid();
+          var newGuid = Guid.NewGuid();
           if(User.Identity?.Name is null)
           {
               return NotFound();
           }
 
-          var command = new AddRoleReviewCommand() { UserId = id, RoleId = request.RoleId, Rating = request.Rating };
+          var id = Guid.Parse(User.Identity?.Name);
+
+          var command = new AddRoleReviewCommand() {Id = newGuid,UserId = id, RoleId = request.RoleId, Rating = request.Rating };
           var result = await _commandDispatcher.SendAsync(command);
           return Ok(result);
       }

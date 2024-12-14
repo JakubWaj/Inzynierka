@@ -6,6 +6,7 @@ using Application.Features.Users;
 using Application.Features.Users.Commands.RespondToFriendRequest;
 using Application.Features.Users.Commands.SendFriendRequest;
 using Application.Features.Users.Commands.SignInUser;
+using Application.Features.Users.Queries.GetAllUsers;
 using Application.Features.Users.Queries.GetFriends;
 using Application.Features.Users.Queries.GetFriendsRequests;
 using Application.Features.Users.Queries.GetUser;
@@ -37,6 +38,14 @@ public class UserController : BaseController
         var x = await _commandDispatcher.SendAsync(command);
         var jwt = _tokenStorage.Get();
         return jwt;
+    }
+    
+    [HttpGet("all")]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
+    {
+        var query = new GetUsersQuery();
+        var users = await _queryDispatcher.SendAsync(query);
+        return Ok(users);
     }
     
     [HttpPost("signup")]
@@ -179,7 +188,6 @@ public class UserController : BaseController
         {
             return NotFound();
         }
-        
         var guid = Guid.Parse(User.Identity?.Name);
         var query = new GetFriendsQuery(){Id = guid};
         var user = await _queryDispatcher.SendAsync(query);

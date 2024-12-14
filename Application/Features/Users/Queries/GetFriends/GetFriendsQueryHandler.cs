@@ -14,7 +14,8 @@ public class GetFriendsQueryHandler : IQueryHandler<GetFriendsQuery,IEnumerable<
     public async Task<IEnumerable<UserDto>> HandleAsync(GetFriendsQuery query)
     {
         var user = await _userRepository.GetFriendsAsync(query.Id);
-        return user.MapToUsersDto();
+        var users = user.Where(x=>x.Id != query.Id).ToList();
+        return users.MapToUsersDto();
         
     }
 }

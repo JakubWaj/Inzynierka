@@ -99,7 +99,12 @@ public class UserRepository : IUserRepository
     public async Task<IEnumerable<User>> GetFriendsAsync(Guid UserId)
     {
         var friendsIds = await _context.UserFriends.Where(x => (x.FriendId == UserId|| x.UserId==UserId) && x.Status==Status.Accepted).ToListAsync();
-        var friends = await _context.Users.Where(x => friendsIds.Select(x => x.UserId).Contains(x.Id)).ToListAsync();
+        var friends = await _context.Users.Where(x => (friendsIds.Select(x => x.FriendId).Contains(x.Id)||friendsIds.Select(x => x.UserId).Contains(x.Id))).ToListAsync();
         return friends;
+    }
+
+    public async Task<UserFriends> GetRequestAsync(Guid UserId, Guid FriendId)
+    {
+        return await _context.UserFriends.FirstOrDefaultAsync(x => x.UserId == UserId && x.FriendId == FriendId);
     }
 }
