@@ -3,7 +3,11 @@ using API.Features.User.Requests;
 using Application.Abstraction;
 using Application.Command.UserCommands.SignUpUser;
 using Application.Features.Users;
+using Application.Features.Users.Commands.RespondToFriendRequest;
+using Application.Features.Users.Commands.SendFriendRequest;
 using Application.Features.Users.Commands.SignInUser;
+using Application.Features.Users.Queries.GetFriends;
+using Application.Features.Users.Queries.GetFriendsRequests;
 using Application.Features.Users.Queries.GetUser;
 using Application.Features.Users.Queries.GetUserByEmail;
 using Application.Features.Users.Queries.GetUserByLogin;
@@ -92,6 +96,96 @@ public class UserController : BaseController
         var user = await _queryDispatcher.SendAsync(query);
         return user;
     }
+    
+    [HttpGet("requests")]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<UserFriendRequestDto>>> GetFriendRequests()
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var guid = Guid.Parse(User.Identity?.Name);
+        var query = new GetFriendsRequestsQuery(){UserId = guid};
+        var user = await _queryDispatcher.SendAsync(query);
+        return Ok(user);
+    }
+    
+    [HttpPost("requests/{friendId}")]
+    [Authorize]
+    public async Task<IActionResult> SendFriendRequest(Guid friendId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var guid = Guid.Parse(User.Identity?.Name);
+        var command = new SendFriendRequestCommand()
+        {
+            UserId = guid,
+            FriendId = friendId
+        };
+        var result = await _commandDispatcher.SendAsync(command);
+        return Ok(result);
+    }
+    
+    [HttpPost("requests/{friendId}/accept")]
+    [Authorize]
+    public async Task<IActionResult> AcceptFriendRequest(Guid friendId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var guid = Guid.Parse(User.Identity?.Name);
+        var command = new RespondToFriendRequestCommand()
+        {
+            UserId = guid,
+            RequestId = friendId,
+            Accept = true
+        };
+        var result = await _commandDispatcher.SendAsync(command);
+        return Ok(result);
+    }
+    
+    [HttpPost("requests/{friendId}/reject")]
+    [Authorize]
+    public async Task<IActionResult> RejectFriendRequest(Guid friendId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var guid = Guid.Parse(User.Identity?.Name);
+        var command = new RespondToFriendRequestCommand()
+        {
+            UserId = guid,
+            RequestId = friendId,
+            Accept = false
+        };
+        var result = await _commandDispatcher.SendAsync(command);
+        return Ok(result);
+    }
+    
+    [HttpGet("friends")]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetFriends()
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var guid = Guid.Parse(User.Identity?.Name);
+        var query = new GetFriendsQuery(){Id = guid};
+        var user = await _queryDispatcher.SendAsync(query);
+        return Ok(user);
+    }
+    
     
 }
 

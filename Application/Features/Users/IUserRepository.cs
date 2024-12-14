@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Common.Enums;
+using Domain.Entities;
 namespace Application.Features.Users;
 
 public interface IUserRepository
@@ -13,4 +14,10 @@ public interface IUserRepository
     Task<bool> ExistsAsync(Guid Id);
     Task<bool> ExistsByEmail(string Email);
     Task<bool> ExistsByLogin(string Login);
+    
+    Task SendFriendRequestAsync(UserFriends userFriends);
+    Task<IEnumerable<UserFriends>> GetFriendsRequestsAsync(Guid UserId);
+    Task<IEnumerable<User>> GetFriendsRequestsUsersAsync(Guid UserId);
+    Task RespondToFriendRequestAsync(Guid Id,Status status);
+    Task<IEnumerable<User>> GetFriendsAsync(Guid UserId);
 }

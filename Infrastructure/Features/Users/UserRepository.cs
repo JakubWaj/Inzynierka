@@ -1,4 +1,5 @@
 ﻿using Application.Features.Users;
+using Domain.Common.Enums;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,5 +68,38 @@ public class UserRepository : IUserRepository
     public async Task<bool> ExistsByLogin(string Login)
     {
         return await _context.Users.AnyAsync(x => x.Login == Login);
+    }
+
+    public async Task SendFriendRequestAsync(UserFriends userFriends)
+    {
+        await _context.UserFriends.AddAsync(userFriends);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<UserFriends>> GetFriendsRequestsAsync(Guid UserId)
+    {
+        return await _context.UserFriends.Where(x => x.FriendId == UserId && x.Status==Status.Pending).ToListAsync();
+    }
+
+    public async Task<IEnumerable<User>> GetFriendsRequestsUsersAsync(Guid UserId)
+    {
+        var friendsIds= await _context.UserFriends.Where(x => x.FriendId == UserId   && x.Status==Status.Pending).ToListAsync();
+        var friends = await _context.Users.Where(x => friendsIds.Select(x => x.UserId).Contains(x.Id)).ToListAsync();
+        return friends;
+    }
+
+    public async Task RespondToFriendRequestAsync(Guid Id, Status status)
+    {
+        var userFriend = await _context.UserFriends.FindAsync(Id);
+        userFriend.Status = status;
+        _context.UserFriends.Update(userFriend);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<User>> GetFriendsAsync(Guid UserId)
+    {
+        var friendsIds = await _context.UserFriends.Where(x => (x.FriendId == UserId|| x.UserId==UserId) && x.Status==Status.Accepted).ToListAsync();
+        var friends = await _context.Users.Where(x => friendsIds.Select(x => x.UserId).Contains(x.Id)).ToListAsync();
+        return friends;
     }
 }
