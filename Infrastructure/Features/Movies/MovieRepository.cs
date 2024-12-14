@@ -16,7 +16,7 @@ public class MovieRepository : IMovieRepository
 
     public async Task<IEnumerable<Movie>> GetAllAsync()
     {
-        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).ToListAsync();
+        return await _context.Movies.Include(x=>x.Cast).Include(x=>x.Reviews).Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).ToListAsync();
     }
 
     public async Task AddAsync(Movie movie)
@@ -40,22 +40,35 @@ public class MovieRepository : IMovieRepository
 
     public async Task<Movie> GetAsync(Guid Id)
     {
-        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).SingleOrDefaultAsync(x=>x.Id==Id);
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .SingleOrDefaultAsync(x=>x.Id==Id);
     }
 
     public async Task<bool> ExistsAsync(Guid Id)
     {
-        return await _context.Movies.AnyAsync(x=>x.Id==Id);
+        return await _context.Movies
+            .AnyAsync(x=>x.Id==Id);
     }
 
     public Task<bool> ExistsAsyncWithTheSameTitle(string Title)
     {
-        return _context.Movies.AnyAsync(x=>x.Title==Title);
+        return _context.Movies
+            .AnyAsync(x=>x.Title==Title);
     }
 
     public async Task<IEnumerable<Movie>> GetByTitleAsync(string Title)
     {
-        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).Where(x=>x.Title.Contains(Title)).ToListAsync();
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .Where(x=>x.Title.Contains(Title))
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<Movie>> GetByGenreAsync(string Genre)
@@ -66,6 +79,8 @@ public class MovieRepository : IMovieRepository
         }
 
         return await _context.Movies
+            .Include(x=>x.Cast)
+            .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
             .Where(x => x.Genre == parsedGenre)
@@ -74,11 +89,93 @@ public class MovieRepository : IMovieRepository
 
     public async Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate)
     {
-        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).Where(x=>x.ReleaseDate.Year==ReleaseDate).ToListAsync();
+        return await _context.Movies
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .Where(x=>x.ReleaseDate.Year==ReleaseDate)
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<Movie>> GetByCountryAsync(Guid CountryId)
     {
-        return await _context.Movies.Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country ).Where(x=>x.CountryOfMovie.Any(x=>x.CountryId==CountryId)).ToListAsync();
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country )
+            .Where(x=>x.CountryOfMovie
+                .Any(x=>x.CountryId==CountryId))
+            .ToListAsync();
+    }
+
+    public async Task AddFavoriteMovieAsync(Guid UserId, Guid MovieId, Guid Id)
+    {
+        var movieFav = new FavoriteMovies()
+        {
+            UserId = UserId,
+            MovieId = MovieId,
+            Id = Id
+        };
+        await _context.FavoriteMovies.AddAsync(movieFav);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task RemoveFavoriteMovieAsync(Guid UserId, Guid MovieId)
+    {
+        var movieFav = await _context.FavoriteMovies.SingleOrDefaultAsync(x=>x.UserId==UserId && x.MovieId==MovieId);
+        _context.FavoriteMovies.Remove(movieFav);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Movie>> GetFavoriteMoviesAsync(Guid UserId)
+    {
+        var usersMovies = await _context.FavoriteMovies
+            .Where(x=>x.UserId==UserId)
+            .Select(x=>x.MovieId)
+            .ToListAsync();
+        //get movies where id is in usersMovies
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .Where(x=>usersMovies.Contains(x.Id))
+            .ToListAsync();
+    }
+
+    public async Task AddWatchLaterMovieAsync(Guid UserId, Guid MovieId, Guid Id)
+    {
+        var movieWatchLater = new WatchLaterMovies()
+        {
+            UserId = UserId,
+            MovieId = MovieId,
+            Id = Id
+        };
+        await _context.WatchLaterMovies.AddAsync(movieWatchLater);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task RemoveWatchLaterMovieAsync(Guid UserId, Guid MovieId)
+    {
+        var x = await _context.WatchLaterMovies.SingleOrDefaultAsync(x=>x.UserId==UserId && x.MovieId==MovieId);
+        _context.WatchLaterMovies.Remove(x);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Movie>> GetWatchLaterMoviesAsync(Guid UserId)
+    {
+        var usersMovies = await _context.WatchLaterMovies
+            .Where(x=>x.UserId==UserId)
+            .Select(x=>x.MovieId)
+            .ToListAsync();
+        //get movies where id is in usersMovies
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .Where(x=>usersMovies.Contains(x.Id))
+            .ToListAsync();
     }
 }

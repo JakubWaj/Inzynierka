@@ -18,9 +18,6 @@ public class GetMovieQueryHandler : Abstraction.IQueryHandler<GetMovieQuery,Movi
             throw new NotFoundException(query.Id.ToString());
         }
         var movie = await _repository.GetAsync(query.Id);
-        var numberOfReviews = movie.Reviews.Count();
-        decimal score = movie.Reviews.Sum(x => x.Rating);
-        score /= numberOfReviews;
-        return new MovieDto(movie.Id,movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration, movie.CountryOfMovie.CountriesToDto(),score,numberOfReviews);
+        return movie.ToDto();
     }
 }

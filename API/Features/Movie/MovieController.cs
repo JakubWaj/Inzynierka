@@ -1,14 +1,19 @@
 ﻿using API.Controllers;
 using Application.Abstraction;
+using Application.Features.Movies.Commands.AddMovieToWatchList;
 using Application.Features.Movies.Commands.CreateMovie;
 using Application.Features.Movies.Commands.DeleteMovie;
+using Application.Features.Movies.Commands.DeleteMoviesFromWatchlist;
 using Application.Features.Movies.Commands.UpdateMovie;
 using Application.Features.Movies.Queries.GetAllMovies;
 using Application.Features.Movies.Queries.GetMovie;
 using Application.Features.Movies.Queries.GetMovieByCountry;
+using Application.Features.Movies.Queries.GetUsersFavoriteMovies;
+using Application.Features.Movies.Queries.GetUsersWatchLaterList;
 using Application.Features.Movies.Queries.SearchMovieByTitle;
 using Application.Features.Movies.Queries.SearchMovieByYear;
 using Application.Features.Movies.Queries.SearchMoviesByGenres;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Features.Movie;
@@ -117,6 +122,121 @@ public class MovieController : BaseController
         return Ok(result);
     }
     
+    [HttpGet("favorite")]
+    [Authorize]
+    public async Task<IActionResult> GetFavoriteMoviesAsync()
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var id = Guid.Parse(User.Identity?.Name);
+        var query = new GetUsersFavoriteMoviesQuery(){ UserId = id};;
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
     
+    [HttpGet("watchLater")]
+    [Authorize]
+    public async Task<IActionResult> GetWatchLaterMoviesAsync()
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var id = Guid.Parse(User.Identity?.Name);
+        var query = new GetUsersWatchLaterListQuery(){ UserId = id};;
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
     
+    [HttpPost("watchLater/{movieId}")]
+    [Authorize]
+    public async Task<IActionResult> AddMovieToWatchLaterAsync(Guid movieId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var id = Guid.Parse(User.Identity?.Name);
+        var guid = Guid.NewGuid();
+        var command = new AddMovieToWatchListCommand()
+        {
+            UserId = id,
+            MovieId = movieId,
+            Id = guid
+        };
+        
+        var result = await _commandDispatcher.SendAsync(command);
+        return Ok(new
+        {
+            Result = result,
+            Id = guid
+        });
+    }
+    
+    [HttpDelete("watchLater/{movieId}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteMovieFromWatchLaterAsync(Guid movieId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        var id = Guid.Parse(User.Identity?.Name);
+        var command = new DeleteMoviesFromWatchlistCommand()
+        {
+            UserId = id,
+            Id = movieId
+        };
+        await _commandDispatcher.SendAsync(command);
+        return Accepted();
+    }
+    
+    [HttpPost("favorite/{movieId}")]
+    [Authorize]
+    public async Task<IActionResult> AddMovieToFavoriteAsync(Guid movieId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var id = Guid.Parse(User.Identity?.Name);
+        var guid = Guid.NewGuid();
+        var command = new AddMovieToWatchListCommand()
+        {
+            UserId = id,
+            MovieId = movieId,
+            Id = guid
+        };
+        
+        var result = await _commandDispatcher.SendAsync(command);
+        return Ok(new
+        {
+            Result = result,
+            Id = guid
+        });
+    }
+    
+    [HttpDelete("favorite/{movieId}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteMovieFromFavoriteAsync(Guid movieId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        var id = Guid.Parse(User.Identity?.Name);
+        var command = new DeleteMoviesFromWatchlistCommand()
+        {
+            UserId = id,
+            Id = movieId
+        };
+        await _commandDispatcher.SendAsync(command);
+        return Accepted();
+    }
 }
