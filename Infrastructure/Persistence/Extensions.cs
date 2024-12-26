@@ -1,4 +1,5 @@
-﻿using Infrastructure.Persistence.Options;
+﻿using Infrastructure.Auth;
+using Infrastructure.Persistence.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +13,8 @@ public static class Extensions
     public static IServiceCollection AddPersistence(this IServiceCollection services,IConfiguration configuration)
     {
         services.Configure<SqlServerOptions>(configuration.GetRequiredSection(SqlServerOptions));
-        var databaseOptions = configuration.GetOptions<SqlServerOptions>(SqlServerOptions); 
+        var databaseOptions = configuration.GetOptions<SqlServerOptions>(SqlServerOptions);
+        services.AddScoped<IMockUsers, MockUsers>();
         services.AddDbContext<MoviesDbContext>(opt => {
                 opt.UseSqlServer(databaseOptions.ConnectionString); });
         return services;

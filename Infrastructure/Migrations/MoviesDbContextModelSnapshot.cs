@@ -36,6 +36,23 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("df543187-8d33-4f11-9e68-8d79e9455871"),
+                            Name = "United States"
+                        },
+                        new
+                        {
+                            Id = new Guid("05bd6d76-1486-45d3-a6af-cba2cb9daa78"),
+                            Name = "Poland"
+                        },
+                        new
+                        {
+                            Id = new Guid("529a75e0-2dde-4d6b-a116-18ea72a9b3b1"),
+                            Name = "Japan"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.FavoriteMovies", b =>
@@ -86,6 +103,28 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("32d9b0b3-c768-46b2-8a8f-b463e848434e"),
+                            BoxOffice = 829895144,
+                            Description = "A thief who steals corporate secrets through dream-sharing technology is tasked with planting an idea into a target's subconscious.",
+                            Duration = 148,
+                            Genre = 11,
+                            ReleaseDate = new DateTime(2010, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Inception"
+                        },
+                        new
+                        {
+                            Id = new Guid("6321e29a-e363-426a-9c09-3725c9279679"),
+                            BoxOffice = 361000000,
+                            Description = "Two teenagers share a profound connection after discovering they are swapping bodies.",
+                            Duration = 106,
+                            Genre = 3,
+                            ReleaseDate = new DateTime(2016, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Your Name"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.MovieCountry", b =>
@@ -101,6 +140,18 @@ namespace Infrastructure.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("MovieCountries");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = new Guid("32d9b0b3-c768-46b2-8a8f-b463e848434e"),
+                            CountryId = new Guid("df543187-8d33-4f11-9e68-8d79e9455871")
+                        },
+                        new
+                        {
+                            MovieId = new Guid("6321e29a-e363-426a-9c09-3725c9279679"),
+                            CountryId = new Guid("529a75e0-2dde-4d6b-a116-18ea72a9b3b1")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Person", b =>
@@ -130,6 +181,24 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("People");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a7c5517f-81a8-474c-9da5-c088be425f46"),
+                            Biography = "An American actor and film producer.",
+                            BirthDate = new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Leonardo",
+                            LastName = "DiCaprio"
+                        },
+                        new
+                        {
+                            Id = new Guid("845eec05-6916-4849-bd5a-46fdb78f3f60"),
+                            Biography = "A Japanese animator, filmmaker, and manga artist.",
+                            BirthDate = new DateTime(1973, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Makoto",
+                            LastName = "Shinkai"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Review", b =>
@@ -156,6 +225,24 @@ namespace Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = new Guid("32d9b0b3-c768-46b2-8a8f-b463e848434e"),
+                            UserId = new Guid("11966333-c91a-4d2c-8d13-002dfdf7cbab"),
+                            Comment = "Amazing movie with a mind-blowing plot!",
+                            Id = new Guid("5b2acec3-9a84-45e5-9f09-b1c5b0a09db8"),
+                            Rating = 9
+                        },
+                        new
+                        {
+                            MovieId = new Guid("6321e29a-e363-426a-9c09-3725c9279679"),
+                            UserId = new Guid("50d3eeed-72ff-4f73-aa07-bc7963ce8895"),
+                            Comment = "Beautifully animated and emotionally resonant.",
+                            Id = new Guid("30177ed8-7be3-4a38-ba05-43cb30988e28"),
+                            Rating = 10
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -184,6 +271,23 @@ namespace Infrastructure.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5236cb63-caa5-4b79-865b-87a0e8291bb0"),
+                            Character = "Dom Cobb",
+                            MovieId = new Guid("32d9b0b3-c768-46b2-8a8f-b463e848434e"),
+                            MovieProductionRole = 0,
+                            PersonId = new Guid("a7c5517f-81a8-474c-9da5-c088be425f46")
+                        },
+                        new
+                        {
+                            Id = new Guid("2e01be26-1f74-4bd6-9795-bcaea55ade77"),
+                            MovieId = new Guid("6321e29a-e363-426a-9c09-3725c9279679"),
+                            MovieProductionRole = 1,
+                            PersonId = new Guid("845eec05-6916-4849-bd5a-46fdb78f3f60")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.RoleReview", b =>
@@ -234,6 +338,22 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11966333-c91a-4d2c-8d13-002dfdf7cbab"),
+                            Email = "user1@example.com",
+                            Login = "user1",
+                            Password = "AQAAAAIAAYagAAAAEAFQE8GLON+mqueUIfgJEnWymBieGh8zIVerizETqJZl2i/mUB25Df+MX57FtICaWQ=="
+                        },
+                        new
+                        {
+                            Id = new Guid("50d3eeed-72ff-4f73-aa07-bc7963ce8895"),
+                            Email = "user2@example.com",
+                            Login = "user2",
+                            Password = "AQAAAAIAAYagAAAAEFg8gyktZzm8+HSbgBKNwNClefPBXLpcq8jt5FdcqRa0LV99jQjIUfQj4q4sOT7Cfw=="
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.UserFriends", b =>

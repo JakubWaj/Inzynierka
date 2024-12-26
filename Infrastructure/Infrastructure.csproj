@@ -17,9 +17,4 @@
       <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Features\FavoriteMovie\" />
-      <Folder Include="Features\Friends\" />
-      <Folder Include="Features\WatchLater\" />
-    </ItemGroup>
 </Project>
