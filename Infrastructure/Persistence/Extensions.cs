@@ -16,7 +16,7 @@ public static class Extensions
         var databaseOptions = configuration.GetOptions<SqlServerOptions>(SqlServerOptions);
         services.AddScoped<IMockUsers, MockUsers>();
         services.AddDbContext<MoviesDbContext>(opt => {
-                opt.UseSqlServer(databaseOptions.ConnectionString); });
+                opt.UseNpgsql(databaseOptions.ConnectionString); });
         return services;
     }
 }
