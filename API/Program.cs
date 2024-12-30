@@ -7,6 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+} );
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new() { Title = "Movies", Version = "v1" });
@@ -46,7 +55,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ExceptionMiddleware>();
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.Run();
 
