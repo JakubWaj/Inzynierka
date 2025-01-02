@@ -5,6 +5,7 @@ using Application.Features.Roles.Commands.DeleteRole;
 using Application.Features.Roles.Commands.UpdateRole;
 using Application.Features.Roles.Queries.GetRole;
 using Application.Features.Roles.Queries.GetRoles;
+using Application.Features.Roles.Queries.GetRolesFromPerson;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Features.Role;
@@ -24,6 +25,13 @@ public class RoleController : BaseController
     public async Task<IActionResult> GetRoleById(Guid id)
     {
         var query = new GetRoleQuery(){Id=id};
+        var role = await _queryDispatcher.SendAsync(query);
+        return Ok(role);
+    }
+    [HttpGet("actor/{id}")]
+    public async Task<IActionResult> GetRoleFromActor(Guid id)
+    {
+        var query = new GetRolesFromPersonQuery(){PersonId = id};
         var role = await _queryDispatcher.SendAsync(query);
         return Ok(role);
     }

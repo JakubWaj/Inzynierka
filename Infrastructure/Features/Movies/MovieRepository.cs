@@ -16,7 +16,15 @@ public class MovieRepository : IMovieRepository
 
     public async Task<IEnumerable<Movie>> GetAllAsync()
     {
-        return await _context.Movies.Include(x=>x.Cast).ThenInclude(x=>x.Reviews).Include(x=>x.Reviews).Include(x=>x.CountryOfMovie).ThenInclude(x=>x.Country).ToListAsync();
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
+            .Include(x=>x.Reviews)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Movie movie)
@@ -42,6 +50,8 @@ public class MovieRepository : IMovieRepository
     {
         return await _context.Movies
             .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
             .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
@@ -65,6 +75,9 @@ public class MovieRepository : IMovieRepository
     {
         return await _context.Movies
             .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
@@ -81,6 +94,9 @@ public class MovieRepository : IMovieRepository
 
         return await _context.Movies
             .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
@@ -91,6 +107,10 @@ public class MovieRepository : IMovieRepository
     public async Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate)
     {
         return await _context.Movies
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
@@ -102,9 +122,12 @@ public class MovieRepository : IMovieRepository
     {
         return await _context.Movies
             .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
-            .ThenInclude(x=>x.Country )
+            .ThenInclude(x=>x.Country)
             .Where(x=>x.CountryOfMovie
                 .Any(x=>x.CountryId==CountryId))
             .ToListAsync();
@@ -138,6 +161,9 @@ public class MovieRepository : IMovieRepository
         //get movies where id is in usersMovies
         return await _context.Movies
             .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
@@ -173,6 +199,9 @@ public class MovieRepository : IMovieRepository
         //get movies where id is in usersMovies
         return await _context.Movies
             .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
             .Include(x=>x.Reviews)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
