@@ -18,12 +18,17 @@ public static class RoleMapper
             Score = (review.Reviews.Count>0? review.Reviews.Average(x => x.Rating):0),
             NumberOfReviews = review.Reviews.Count,
             Movie = review.Movie.ToDto(),
+            Person = review.Person.ToDto()
         };
     }
     
     public static RoleMovieDto ToDto(this Movie movie)
     {
         return new RoleMovieDto(movie.Id,movie.Title,movie.Description,movie.Genre,movie.ReleaseDate,movie.BoxOffice,movie.Duration);
+    }
+    public static RolePersonDto ToDto(this Person person)
+    {
+        return new RolePersonDto(person.Id,person.FirstName,person.LastName,person.BirthDate,person.Biography,"");
     }
     public static IEnumerable<RoleDto> ToDto(this IEnumerable<Role> roles)
     {

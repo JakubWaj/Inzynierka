@@ -16,12 +16,12 @@ public class RoleRepository : IRoleRepository
     
     public async Task<IEnumerable<Role>> GetAllAsync()
     {
-        return await _context.Roles.Include(x=>x.Reviews).Include(x=>x.Movie).ToListAsync();
+        return await _context.Roles.Include(x=>x.Reviews).Include(x=>x.Person).Include(x=>x.Movie).ToListAsync();
     }
 
     public async Task<IEnumerable<Role>> GetAllFromPerson(Guid personId)
     {
-        return await _context.Roles.Include(x=>x.Reviews).Include(x=>x.Movie).Where(x=>x.PersonId==personId).ToListAsync();
+        return await _context.Roles.Include(x=>x.Reviews).Include(x=>x.Movie).Include(x=>x.Person).Where(x=>x.PersonId==personId).ToListAsync();
     }
 
     public async Task UpdateAsync(Role role)
@@ -45,7 +45,7 @@ public class RoleRepository : IRoleRepository
 
     public async Task<Role> GetAsync(Guid Id)
     {
-        return await _context.Roles.Include(x=>x.Movie).SingleOrDefaultAsync(x=>x.Id==Id);
+        return await _context.Roles.Include(x=>x.Movie).Include(x=>x.Person).SingleOrDefaultAsync(x=>x.Id==Id);
     }
 
     public async Task<bool> ExistsAsync(Guid Id)
