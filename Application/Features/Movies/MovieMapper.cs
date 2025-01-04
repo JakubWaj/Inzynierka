@@ -7,9 +7,17 @@ namespace Application.Features;
 
 public static class MovieMapper
 {
+    public static MovieDtoModel ToDtoModel(this Domain.Entities.Movie? movie)
+    {
+        if(movie == null)
+        {
+            return null;
+        }
+        return new MovieDtoModel(movie.Id,movie.Title,movie.Description,movie.Genre,movie.ReleaseDate,movie.BoxOffice,movie.Duration);
+    }
     public static MovieDto ToDto(this Domain.Entities.Movie movie)
     {
-        return new MovieDto(movie.Id, movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration,movie.Reviews.ToDto(), movie.Cast.ToDto(),movie.CountryOfMovie.CountriesToDto(),CalculateScore(movie),movie.Reviews.Count());
+        return new MovieDto(movie.Id, movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration,movie.Reviews.ToDto(), movie.Cast.ToDto(),movie.CountryOfMovie.CountriesToDto(),movie.Image,CalculateScore(movie),movie.Reviews.Count());
     }
     
     public static IEnumerable<MovieDto> ToDto(this IEnumerable<Domain.Entities.Movie> movies)

@@ -15,4 +15,5 @@ public class Movie
     public ICollection<MovieCountry> CountryOfMovie { get; set; }
     public ICollection<Role> Cast { get; set; }
     public ICollection<Review> Reviews { get; set; }
+    public string? Image { get; set; }
 }

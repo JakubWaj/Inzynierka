@@ -16,7 +16,8 @@ public class ReviewRepository : IReviewRepository
 
     public async Task<IEnumerable<Review>> GetAllAsync()
     {
-        return await _context.Reviews.ToListAsync();
+        return await _context.Reviews            .Include(x=>x.Movie)
+            .Include(x=>x.User).ToListAsync();
     }
 
     public async Task AddAsync(Review review)
@@ -40,7 +41,10 @@ public class ReviewRepository : IReviewRepository
 
     public async Task<Review> GetAsync(Guid Id)
     {
-        return await _context.Reviews.SingleOrDefaultAsync(x=>x.Id==Id);
+        return await _context.Reviews
+            .Include(x=>x.Movie)
+            .Include(x=>x.User)
+            .SingleOrDefaultAsync(x=>x.Id==Id);
     }
 
     public async Task<bool> ExistsAsync(Guid Id)

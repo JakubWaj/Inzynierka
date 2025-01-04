@@ -1,4 +1,5 @@
-﻿using Application.Features.People;
+﻿using Application.Features.Movies;
+using Application.Features.People;
 using Application.Features.Reviews;
 using Domain.Entities;
 
@@ -17,15 +18,12 @@ public static class RoleMapper
             Character = review.Character,
             Score = (review.Reviews.Count>0? review.Reviews.Average(x => x.Rating):0),
             NumberOfReviews = review.Reviews.Count,
-            Movie = review.Movie.ToDto(),
+            Movie = review.Movie.ToDtoModel(),
             Person = review.Person.ToDto()
         };
     }
     
-    public static RoleMovieDto ToDto(this Movie movie)
-    {
-        return new RoleMovieDto(movie.Id,movie.Title,movie.Description,movie.Genre,movie.ReleaseDate,movie.BoxOffice,movie.Duration);
-    }
+
     public static RolePersonDto ToDto(this Person person)
     {
         return new RolePersonDto(person.Id,person.FirstName,person.LastName,person.BirthDate,person.Biography,"");

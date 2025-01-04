@@ -241,4 +241,20 @@ public class MovieController : BaseController
         await _commandDispatcher.SendAsync(command);
         return Accepted();
     }
+    
+    [HttpGet("mainpage")]
+    [Authorize]
+    public async Task<IActionResult> GetMainPageMoviesAsync()
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        
+        var id = Guid.Parse(User.Identity?.Name);
+        var query = new GetUsersFavoriteMoviesQuery(){ UserId = id};;
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
+    
 }

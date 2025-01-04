@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Features.Users;
+using Domain.Entities;
 
 namespace Application.Features.Reviews;
 
@@ -12,7 +13,9 @@ public static class ReviewMapper
             Comment = review.Comment,
             Rating = review.Rating,
             MovieId = review.MovieId,
-            UserId = review.UserId
+            UserId = review.UserId,
+            Movie = review.Movie.ToDtoModel(),
+            User = review.User.MapToUserDto()
         };
     }
     public static IEnumerable<ReviewDto> ToDto(this IEnumerable<Review> reviewDto)

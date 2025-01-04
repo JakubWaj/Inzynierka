@@ -7,4 +7,6 @@ using Domain.Entities;
 
 namespace Application.Features.Movies;
 
-public record MovieDto(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration,IEnumerable<ReviewDto> reviews,IEnumerable<RoleDto> Roles ,IEnumerable<MovieCountryDto> countries,decimal? Score=default,int? NumberOfReviews=default);
+public record MovieDtoModel(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration);
+
+public record MovieDto(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration,IEnumerable<ReviewDto> reviews,IEnumerable<RoleDto> Roles ,IEnumerable<MovieCountryDto> countries,string Image="",decimal? Score=default,int? NumberOfReviews=default);
