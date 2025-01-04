@@ -20,6 +20,7 @@
       <Folder Include="Features\MovieCountry\Exceptions\" />
       <Folder Include="Features\MovieCountry\Queries\" />
       <Folder Include="Features\Movies\Exceptions\" />
+      <Folder Include="Features\Movies\Queries\GetFriendsWatchedMovies\" />
       <Folder Include="Features\People\Exceptions\" />
       <Folder Include="Features\Roles\Exceptions\" />
     </ItemGroup>
