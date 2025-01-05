@@ -84,7 +84,7 @@ public class MovieRepository : IMovieRepository
             .ThenInclude(x=>x.User)
             .Include(x=>x.CountryOfMovie)
             .ThenInclude(x=>x.Country)
-            .Where(x=>x.Title.Contains(Title))
+            .Where(x=>x.Title.ToLower().Contains(Title.ToLower()))
             .ToListAsync();
     }
 

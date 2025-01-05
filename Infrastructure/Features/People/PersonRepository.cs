@@ -35,12 +35,12 @@ public class PersonRepository : IPersonRepository
 
     public async Task<Person> GetAsync(Guid Id)
     {
-        return await _context.People.SingleOrDefaultAsync(x=>x.Id==Id);
+        return await _context.People.Include(x=>x.Roles).ThenInclude(x=>x.Movie).Include(x=>x.Roles).ThenInclude(x=>x.Reviews).SingleOrDefaultAsync(x=>x.Id==Id);
     }
 
     public async Task<IEnumerable<Person>> GetAllAsync()
     {
-        return await _context.People.ToListAsync();
+        return await _context.People.Include(x=>x.Roles).ThenInclude(x=>x.Movie).Include(x=>x.Roles).ThenInclude(x=>x.Reviews).ToListAsync();
     }
 
     public async Task<bool> ExistsAsync(Guid Id)

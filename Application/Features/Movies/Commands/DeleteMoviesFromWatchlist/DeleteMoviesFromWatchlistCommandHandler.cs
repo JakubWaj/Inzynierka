@@ -17,12 +17,9 @@ public class DeleteMoviesFromWatchlistCommandHandler : ICommandHandler<DeleteMov
     
     public async Task<bool> HandleAsync(DeleteMoviesFromWatchlistCommand command)
     {
-        var user = await _userRepository.GetAsync(command.UserId);
-        var WatchLater = await _movieRepository.GetWatchLaterMoviesAsync(command.UserId);
-        var contains = WatchLater.FirstOrDefault(x=>x.Id== command.Id);
-        if (contains == null)
+        if (await _movieRepository.WatchLaterMovieExistsAsync(command.UserId,command.Id)==false)
         {
-            throw new NotFoundException("Movie not found in the watch later list!");
+            throw new NotFoundException("Movie not found in the favorites list!");
         }
         await _movieRepository.RemoveWatchLaterMovieAsync(command.UserId, command.Id);
         return true;

@@ -1,4 +1,9 @@
-﻿namespace Application.Features.People;
+﻿using Application.Features.Movies;
+using Application.Features.Roles;
+using Domain.Common.Enums;
+using Domain.Entities;
+
+namespace Application.Features.People;
 
 public record PersonDto(
     Guid Id,
@@ -6,5 +11,14 @@ public record PersonDto(
     string LastName,
     string Image,
     DateTime BirthDate,
-    string Biography
-    );
+    string Biography,
+    IEnumerable<PersonRolesDto> Roles);
+
+public record PersonRolesDto(
+    Guid Id,
+    MovieDtoModel Movie,
+    Guid MovieId,
+    MovieProductionRole MovieProductionRole,
+    string? Character ,
+    double Score,
+    int NumberOfReviews);

@@ -16,10 +16,7 @@ public class DeleteMovieFromFavoritesCommandHandler : ICommandHandler<DeleteMovi
     
     public async Task<bool> HandleAsync(DeleteMovieFromFavoritesCommand command)
     {
-        var user = await _userRepository.GetAsync(command.UserId);
-        var FavoriteMovie = await _movieRepository.GetWatchLaterMoviesAsync(command.UserId);
-        var contains = FavoriteMovie.FirstOrDefault(x=>x.Id== command.Id);
-        if (contains == null)
+        if (await _movieRepository.FavMovieExistsAsync(command.UserId,command.Id)==false)
         {
             throw new NotFoundException("Movie not found in the favorites list!");
         }
