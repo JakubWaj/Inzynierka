@@ -215,4 +215,20 @@ public class MovieRepository : IMovieRepository
             .Where(x=>usersMovies.Contains(x.Id))
             .ToListAsync();
     }
+
+    public async Task<IEnumerable<Movie>> GetUsersWatchedMoviesync(Guid RoleId)
+    {
+        var usersMovies = await _context.Users.Where(x=>x.Id==RoleId).Select(x=>x.Reviews.Select(x=>x.Movie)).ToListAsync();
+        return usersMovies.First();
+    }
+
+    public async Task<bool> FavMovieExistsAsync(Guid userId, Guid movieId)
+    {
+        return await _context.FavoriteMovies.AnyAsync(x=>x.UserId==userId && x.MovieId==movieId);
+    }
+
+    public async Task<bool> WatchLaterMovieExistsAsync(Guid userId, Guid movieId)
+    {
+        return await _context.WatchLaterMovies.AnyAsync(x=>x.UserId==userId && x.MovieId==movieId);
+    }
 }

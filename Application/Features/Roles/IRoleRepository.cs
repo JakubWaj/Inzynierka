@@ -11,4 +11,5 @@ public interface IRoleRepository
     Task UpdateAsync(Role movie);
     Task DeleteAsync(Guid Id);
     Task<bool> ExistsAsync(Guid Id);
+
 }

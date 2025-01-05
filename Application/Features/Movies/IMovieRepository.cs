@@ -23,5 +23,7 @@ public interface IMovieRepository
     Task AddWatchLaterMovieAsync(Guid UserId, Guid MovieId, Guid Id);
     Task RemoveWatchLaterMovieAsync(Guid UserId, Guid MovieId);
     Task<IEnumerable<Movie>> GetWatchLaterMoviesAsync(Guid UserId);
-    
+    Task<IEnumerable<Movie>> GetUsersWatchedMoviesync(Guid RoleId);
+    Task<bool> FavMovieExistsAsync(Guid userId, Guid movieId);
+    Task<bool> WatchLaterMovieExistsAsync(Guid userId, Guid movieId);
 }

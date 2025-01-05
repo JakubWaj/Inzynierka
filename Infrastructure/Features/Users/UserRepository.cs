@@ -42,7 +42,7 @@ public class UserRepository : IUserRepository
 
     public async Task<User> GetAsync(Guid Id)
     {
-        return await _context.Users.FindAsync(Id);
+        return await _context.Users.Include(x=>x.WatchedMovies).Include(x=>x.FavoriteMovies).FirstOrDefaultAsync(x=>x.Id==Id);
     }
 
     public async Task<User> GetByEmail(string Email)

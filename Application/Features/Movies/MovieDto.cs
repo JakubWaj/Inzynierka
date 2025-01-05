@@ -9,4 +9,32 @@ namespace Application.Features.Movies;
 
 public record MovieDtoModel(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration);
 
-public record MovieDto(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration,IEnumerable<ReviewDto> reviews,IEnumerable<RoleDto> Roles ,IEnumerable<MovieCountryDto> countries,string Image="",decimal? Score=default,int? NumberOfReviews=default);
+public record MovieDto(Guid Id,
+    string Title,
+    string Description,
+    Genre Genre,
+    DateTime ReleaseDate,
+    int BoxOffice,
+    int Duration,
+    IEnumerable<ReviewDto> reviews,
+    IEnumerable<RoleDto> Roles ,
+    IEnumerable<MovieCountryDto> countries,
+    string Image="",
+    decimal? Score=default,
+    int? NumberOfReviews=default);
+    
+public record MainPageDto(Guid Id,
+    string Title,
+    string Description,
+    Genre Genre,
+    DateTime ReleaseDate,
+    int BoxOffice,
+    int Duration,
+    IEnumerable<ReviewDto> reviews,
+    IEnumerable<RoleDto> Roles ,
+    IEnumerable<MovieCountryDto> countries,
+    string Image="",
+    decimal? Score=default,
+    int? NumberOfReviews=default,
+    bool? liked=false,
+    bool? watchlater=false);

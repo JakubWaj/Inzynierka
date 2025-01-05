@@ -1,8 +1,10 @@
 ﻿using API.Controllers;
 using Application.Abstraction;
+using Application.Features.Movies.Commands.AddMovieToFavorites;
 using Application.Features.Movies.Commands.AddMovieToWatchList;
 using Application.Features.Movies.Commands.CreateMovie;
 using Application.Features.Movies.Commands.DeleteMovie;
+using Application.Features.Movies.Commands.DeleteMovieFromFavorites;
 using Application.Features.Movies.Commands.DeleteMoviesFromWatchlist;
 using Application.Features.Movies.Commands.UpdateMovie;
 using Application.Features.Movies.Queries.GetAllMovies;
@@ -209,7 +211,7 @@ public class MovieController : BaseController
         
         var id = Guid.Parse(User.Identity?.Name);
         var guid = Guid.NewGuid();
-        var command = new AddMovieToWatchListCommand()
+        var command = new AddMovieToFavoritesCommand()
         {
             UserId = id,
             MovieId = movieId,
@@ -233,7 +235,7 @@ public class MovieController : BaseController
             return NotFound();
         }
         var id = Guid.Parse(User.Identity?.Name);
-        var command = new DeleteMoviesFromWatchlistCommand()
+        var command = new DeleteMovieFromFavoritesCommand()
         {
             UserId = id,
             Id = movieId
@@ -250,11 +252,10 @@ public class MovieController : BaseController
         {
             return NotFound();
         }
-        
         var id = Guid.Parse(User.Identity?.Name);
         var query = new GetUsersFavoriteMoviesQuery(){ UserId = id};;
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }
-    
+     
 }

@@ -8,4 +8,6 @@ public class User
     public string Email { get; set; }
     public ICollection<Review> Reviews { get; set; }
     public ICollection<RoleReview> RoleReviews { get; set; }
+    public ICollection<Movie> FavoriteMovies { get; set; }
+    public ICollection<Movie> WatchedMovies { get; set; }
 }
