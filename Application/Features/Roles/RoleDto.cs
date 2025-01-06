@@ -22,5 +22,3 @@ public class RoleDto
     
     /*public ICollection<RoleReview> Reviews { get; set; }*/
 }
-
-public record RolePersonDto(Guid Id,string FirstName, string LastName, DateTime DateOfBirth, string Biography, string? PictureUrl);

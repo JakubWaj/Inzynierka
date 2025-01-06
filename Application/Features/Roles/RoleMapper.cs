@@ -24,7 +24,7 @@ public static class RoleMapper
     }
     public static RolePersonDto ToDto(this Person person)
     {
-        return new RolePersonDto(person.Id,person.FirstName,person.LastName,person.BirthDate,person.Biography,"");
+        return new RolePersonDto(person.Id,person.FirstName,person.LastName,person.BirthDate,person.Biography,person.Image);
     }
     public static IEnumerable<RoleDto> ToDto(this IEnumerable<Role> roles)
     {
