@@ -2,7 +2,7 @@
 
 namespace Application.Features.Movies.Queries.GetMainPage;
 
-public class GetMainPageQuery : IQuery<IEnumerable<MainPageDto>>
+public class GetMainPageQuery : IQuery<IEnumerable<MainPageMovieDto>>
 {
     public Guid UserId { get; set; }
 }

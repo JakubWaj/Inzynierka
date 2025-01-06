@@ -15,6 +15,12 @@ public static class MovieMapper
         }
         return new MovieDtoModel(movie.Id,movie.Title,movie.Description,movie.Genre,movie.ReleaseDate,movie.BoxOffice,movie.Duration);
     }
+    
+    public static MainPageMovieDto ToMainPageDto(this Domain.Entities.Movie movie, bool liked, bool watchlater)
+    {
+        return new MainPageMovieDto(movie.Id, movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration,movie.Reviews.ToDto(), movie.Cast.ToDto(),movie.CountryOfMovie.CountriesToDto(),movie.Image,CalculateScore(movie),movie.Reviews.Count(),liked,watchlater);
+    }
+    
     public static MovieDto ToDto(this Domain.Entities.Movie movie)
     {
         return new MovieDto(movie.Id, movie.Title , movie.Description, movie.Genre, movie.ReleaseDate, movie.BoxOffice, movie.Duration,movie.Reviews.ToDto(), movie.Cast.ToDto(),movie.CountryOfMovie.CountriesToDto(),movie.Image,CalculateScore(movie),movie.Reviews.Count());

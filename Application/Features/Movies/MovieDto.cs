@@ -23,7 +23,7 @@ public record MovieDto(Guid Id,
     decimal? Score=default,
     int? NumberOfReviews=default);
     
-public record MainPageDto(Guid Id,
+public record MainPageMovieDto(Guid Id,
     string Title,
     string Description,
     Genre Genre,
@@ -37,4 +37,10 @@ public record MainPageDto(Guid Id,
     decimal? Score=default,
     int? NumberOfReviews=default,
     bool? liked=false,
-    bool? watchlater=false);
+    bool? watchlater=false
+    );
+    
+public record MainPageDto(
+    IEnumerable<MainPageMovieDto> RecommendedMovies,
+    IEnumerable<MainPageMovieDto> PopularAmongFriendsMovies
+        );
