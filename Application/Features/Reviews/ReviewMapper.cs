@@ -15,7 +15,8 @@ public static class ReviewMapper
             MovieId = review.MovieId,
             UserId = review.UserId,
             Movie = review.Movie.ToDtoModel(),
-            User = review.User.MapToUserDto()
+            User = review.User.MapToUserDto(),
+            CreatedAt = review.CreatedAt
         };
     }
     public static IEnumerable<ReviewDto> ToDto(this IEnumerable<Review> reviewDto)

@@ -8,6 +8,7 @@ using Application.Features.Movies.Commands.DeleteMovieFromFavorites;
 using Application.Features.Movies.Commands.DeleteMoviesFromWatchlist;
 using Application.Features.Movies.Commands.UpdateMovie;
 using Application.Features.Movies.Queries.GetAllMovies;
+using Application.Features.Movies.Queries.GetMainPage;
 using Application.Features.Movies.Queries.GetMovie;
 using Application.Features.Movies.Queries.GetMovieByCountry;
 using Application.Features.Movies.Queries.GetUsersFavoriteMovies;
@@ -253,7 +254,7 @@ public class MovieController : BaseController
             return NotFound();
         }
         var id = Guid.Parse(User.Identity?.Name);
-        var query = new GetUsersFavoriteMoviesQuery(){ UserId = id};;
+        var query = new GetMainPageQuery(){ UserId = id};;
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }

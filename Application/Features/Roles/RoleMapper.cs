@@ -19,11 +19,9 @@ public static class RoleMapper
             Score = (review.Reviews.Count>0? review.Reviews.Average(x => x.Rating):0),
             NumberOfReviews = review.Reviews.Count,
             Movie = review.Movie.ToDtoModel(),
-            Person = review.Person.ToDto()
+            Person = review.Person.ToDto(),
         };
     }
-    
-
     public static RolePersonDto ToDto(this Person person)
     {
         return new RolePersonDto(person.Id,person.FirstName,person.LastName,person.BirthDate,person.Biography,"");

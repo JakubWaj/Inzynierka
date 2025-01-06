@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Review
+namespace Domain.Entities;
+
+public class Review : AuditableEntity
 {
     public Guid Id { get; set; }
     public string Comment { get; set; }

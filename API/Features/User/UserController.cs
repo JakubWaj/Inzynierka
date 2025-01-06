@@ -49,7 +49,7 @@ public class UserController : BaseController
     }
     
     [HttpPost("signup")]
-    public async Task<IActionResult> SignUp([FromBody] UserSignUpRequest accountSignUp)
+    public async Task<ActionResult<JwtDto>> SignUp([FromBody] UserSignUpRequest accountSignUp)
     {
         Guid guid = Guid.NewGuid();
         var command = new SignUpUserCommand()
@@ -60,12 +60,8 @@ public class UserController : BaseController
             Password = accountSignUp.Password,
         };
         var result =  await _commandDispatcher.SendAsync(command);
-        if (!result)
-        {
-            return BadRequest("something went wrong!");  
-        }
-        /*return CreatedAtAction(nameof(Get), new {guid}, null);*/
-        return Created($"api/account/{guid}", "User created successfully!");
+        var jwt = _tokenStorage.Get();
+        return jwt;
     }
     
     [HttpGet("{id}")]

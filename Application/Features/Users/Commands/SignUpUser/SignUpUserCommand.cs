@@ -1,8 +1,9 @@
 ﻿using Application.Abstraction;
+using Application.Features.Users;
 
 namespace Application.Command.UserCommands.SignUpUser;
 
-public class SignUpUserCommand : ICommand<bool>
+public class SignUpUserCommand : ICommand<JwtDto>
 {
     public Guid UserId { get; set; }
     public string Login { get; set; }

@@ -16,7 +16,7 @@ public class GetRoleReviewsQueryHandler : IQueryHandler<GetRoleReviewsQuery,Role
         var roleReviews = await _roleReviewRepository.GetAllAsyncFromRole(query.RoleId);
         var ratings = roleReviews.Select(x => x.Rating);
         
-        var roleReviewsDto = new RoleReviewsDto(ratings.Average(), query.RoleId,roleReviews.FirstOrDefault().Role.MovieProductionRole,roleReviews.FirstOrDefault().Role.Person.FirstName,roleReviews.FirstOrDefault().Role.Person.LastName);
+        var roleReviewsDto = new RoleReviewsDto(ratings.Average(), query.RoleId,roleReviews.FirstOrDefault().Role.MovieProductionRole,roleReviews.FirstOrDefault().Role.Person.FirstName,roleReviews.FirstOrDefault().Role.Person.LastName,roleReviews.FirstOrDefault().CreatedAt);
         return roleReviewsDto;
     }
 }

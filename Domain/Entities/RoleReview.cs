@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class RoleReview
+namespace Domain.Entities;
+
+public class RoleReview : AuditableEntity
 {
     public Guid Id { get; set; }
     public virtual Role Role { get; set; }

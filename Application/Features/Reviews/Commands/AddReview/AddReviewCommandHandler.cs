@@ -27,7 +27,8 @@ public class AddReviewCommandHandler : ICommandHandler<AddReviewCommand, bool>
             Comment = command.Comment,
             Rating = command.Rating,
             MovieId = command.MovieId,
-            UserId = command.UserId
+            UserId = command.UserId,
+            CreatedAt = DateTime.Now
         };
         
         await _reviewRepository.AddAsync(review);

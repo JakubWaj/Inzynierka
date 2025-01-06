@@ -25,7 +25,8 @@ public class GetRoleReviewQueryHandler : IQueryHandler<GetRoleReviewQuery,RoleRe
             roleReview.RoleId,
             roleReview.Role.MovieProductionRole,
             roleReview.Role.Person.FirstName,
-            roleReview.Role.Person.LastName);
+            roleReview.Role.Person.LastName,
+            roleReview.CreatedAt);
         return roleReviewDto;
     }
 }

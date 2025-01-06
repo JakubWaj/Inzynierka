@@ -6,22 +6,25 @@ using Domain.Entities;
 
 namespace Application.Features.Users.Commands.SignUpUser;
 
-internal class SignUpUserCommandHandler : ICommandHandler<SignUpUserCommand, bool>
+internal class SignUpUserCommandHandler : ICommandHandler<SignUpUserCommand, JwtDto>
 {
     private readonly IUserRepository _accountRepository;
     private readonly IPasswordManager _passwordManager;
-
-    public SignUpUserCommandHandler(IUserRepository accountRepository, IPasswordManager passwordManager)
+    private readonly IAuthenticator _authenticator;
+    private readonly ITokenStorage _tokenManager;
+    public SignUpUserCommandHandler(IUserRepository accountRepository, IPasswordManager passwordManager, IAuthenticator authenticator, ITokenStorage tokenManager)
     {
         _accountRepository = accountRepository;
         _passwordManager = passwordManager;
+        _authenticator = authenticator;
+        _tokenManager = tokenManager;
     }
 
 
 
-    public async Task<bool> HandleAsync(SignUpUserCommand command)
+    public async Task<JwtDto> HandleAsync(SignUpUserCommand command)
     {
-        var user = await _accountRepository.GetByEmail(command.Email);
+       
         var emailUnique = await _accountRepository.ExistsByEmail(command.Email);
         var loginUnique = await _accountRepository.ExistsByLogin(command.Login);
         if (emailUnique || loginUnique)
@@ -37,6 +40,24 @@ internal class SignUpUserCommandHandler : ICommandHandler<SignUpUserCommand, boo
             Password = securedPassword
         };
         await _accountRepository.AddAsync(newUser);
-        return true;
+        var user = await _accountRepository.GetByEmail(command.Email);
+        var exists = await _accountRepository.ExistsByEmail(command.Email);
+        if (!exists)
+        {
+            throw new InvalidCredentialsException();
+        }
+        
+        if (!_passwordManager.Validate(command.Password, user.Password))
+        {
+            throw new InvalidCredentialsException();
+        }
+
+        if (_passwordManager.Validate(command.Password, user.Password))
+        {
+            var jwt = _authenticator.CreateToken(user.Id);
+            _tokenManager.Set(jwt);
+            return jwt;
+        }
+        throw new InvalidCredentialsException();
     }
 }

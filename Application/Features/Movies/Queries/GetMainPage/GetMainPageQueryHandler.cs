@@ -21,7 +21,7 @@ public class GetMainPageQueryHandler : IQueryHandler<GetMainPageQuery,IEnumerabl
         var userId = query.UserId;
         var likedMovies = await _repository.GetFavoriteMoviesAsync(userId);
         var watchLaterMovies = await _repository.GetWatchLaterMoviesAsync(userId);
-        var result = movies.Select(x => x.ToMainPageDto(true,true));
+        var result = movies.Select(x => x.ToMainPageDto(likedMovies.Contains(x),watchLaterMovies.Contains(x)));
         return result;
     }
 }
