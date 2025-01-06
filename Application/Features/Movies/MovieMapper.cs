@@ -13,7 +13,7 @@ public static class MovieMapper
         {
             return null;
         }
-        return new MovieDtoModel(movie.Id,movie.Title,movie.Description,movie.Genre,movie.ReleaseDate,movie.BoxOffice,movie.Duration);
+        return new MovieDtoModel(movie.Id,movie.Title,movie.Description,movie.Genre,movie.ReleaseDate,movie.BoxOffice,movie.Duration,movie.Image);
     }
     
     public static MainPageMovieDto ToMainPageDto(this Domain.Entities.Movie movie, bool liked, bool watchlater)

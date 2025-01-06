@@ -7,7 +7,7 @@ using Domain.Entities;
 
 namespace Application.Features.Movies;
 
-public record MovieDtoModel(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration);
+public record MovieDtoModel(Guid Id,string Title, string Description, Genre Genre, DateTime ReleaseDate, int BoxOffice, int Duration,string image);
 
 public record MovieDto(Guid Id,
     string Title,
