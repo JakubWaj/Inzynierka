@@ -3,6 +3,7 @@ using API.Features.User.Requests;
 using Application.Abstraction;
 using Application.Command.UserCommands.SignUpUser;
 using Application.Features.Users;
+using Application.Features.Users.Commands.RemoveFromFriends;
 using Application.Features.Users.Commands.RespondToFriendRequest;
 using Application.Features.Users.Commands.SendFriendRequest;
 using Application.Features.Users.Commands.SignInUser;
@@ -190,6 +191,22 @@ public class UserController : BaseController
         return Ok(user);
     }
     
-    
+    [HttpDelete("friends/{friendId}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteFriend(Guid friendId)
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        var guid = Guid.Parse(User.Identity?.Name);
+        var command = new RemoveFromFriendsCommand()
+        {
+            UserId = guid,
+            FriendId = friendId
+        };
+        var result = await _commandDispatcher.SendAsync(command);
+        return Ok(result);
+    }
 }
 

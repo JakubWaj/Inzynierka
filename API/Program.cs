@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+AppContext.SetSwitch("System.Runtime.Serialization.Formatters.BinaryFormatterSerializationEnabled", true);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>

@@ -107,4 +107,11 @@ public class UserRepository : IUserRepository
     {
         return await _context.UserFriends.FirstOrDefaultAsync(x => x.UserId == UserId && x.FriendId == FriendId);
     }
+
+    public async Task DeleteFriendAsync(Guid UserId, Guid FriendId)
+    {
+        var userFriend = await _context.UserFriends.FirstOrDefaultAsync(x => (x.UserId == UserId && x.FriendId == FriendId) || (x.UserId == FriendId && x.FriendId == UserId));
+        _context.UserFriends.Remove(userFriend);
+        await _context.SaveChangesAsync();
+    }
 }
