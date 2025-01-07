@@ -12,7 +12,7 @@ public record PersonDto(
     string Image,
     DateTime BirthDate,
     string Biography,
-    double Score,
+    decimal Score,
     int NumberOfReviews,
     IEnumerable<PersonRolesDto> Roles);
 

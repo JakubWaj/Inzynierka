@@ -26,7 +26,7 @@ public class AddRoleReviewCommandHandler : ICommandHandler<AddRoleReviewCommand,
             UserId = command.UserId,
             RoleId = command.RoleId,
             Rating = command.Rating,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.Now.ToUniversalTime()
         };
         await _roleReviewRepository.AddAsync(role);
         return true;
