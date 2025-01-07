@@ -13,6 +13,7 @@ using Application.Features.Movies.Queries.GetAllMovies;
 using Application.Features.Movies.Queries.GetMainPage;
 using Application.Features.Movies.Queries.GetMovie;
 using Application.Features.Movies.Queries.GetMovieByCountry;
+using Application.Features.Movies.Queries.GetPaginatedMovies;
 using Application.Features.Movies.Queries.GetUsersFavoriteMovies;
 using Application.Features.Movies.Queries.GetUsersWatchLaterList;
 using Application.Features.Movies.Queries.SearchMovieByTitle;
@@ -265,6 +266,15 @@ public class MovieController : BaseController
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }
+    
+    [HttpGet("Paginated")]
+    public async Task<IActionResult> GetPaginatedMoviesAsync([FromQuery] int pageNumber, [FromQuery] int pageSize)
+    {
+        var query = new GetPaginatedMoviesQuery(){ PageNumber = pageNumber, PageSize = pageSize};
+        var result = await _queryDispatcher.SendAsync(query);
+        return Ok(result);
+    }
+    
     [HttpPost("Seed")]
     public async Task<IActionResult> AddFewMovies()
     {

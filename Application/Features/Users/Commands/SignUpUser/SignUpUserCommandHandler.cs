@@ -55,6 +55,7 @@ internal class SignUpUserCommandHandler : ICommandHandler<SignUpUserCommand, Jwt
         if (_passwordManager.Validate(command.Password, user.Password))
         {
             var jwt = _authenticator.CreateToken(user.Id);
+            jwt.Login = user.Login;
             _tokenManager.Set(jwt);
             return jwt;
         }

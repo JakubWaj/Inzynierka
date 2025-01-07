@@ -38,6 +38,7 @@ public class UserController : BaseController
         var command = new SignInUserCommand(){Email = accountLogin.Email, Password = accountLogin.Password};
         var x = await _commandDispatcher.SendAsync(command);
         var jwt = _tokenStorage.Get();
+        
         return jwt;
     }
     

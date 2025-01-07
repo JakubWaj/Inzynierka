@@ -15,6 +15,7 @@ public interface IMovieRepository
     Task<IEnumerable<Movie>> GetByGenreAsync(string Genre);
     Task<IEnumerable<Movie>> GetByReleaseYearAsync(int ReleaseDate);
     Task<IEnumerable<Movie>> GetByCountryAsync(Guid CountryId);
+    Task<IEnumerable<Movie>> GetPaginatedMovies(int PageNumber, int PageSize);
     Task AddFavoriteMovieAsync(Guid UserId, Guid MovieId, Guid Id);
     Task RemoveFavoriteMovieAsync(Guid UserId, Guid MovieId);
     Task<IEnumerable<Movie>> GetFavoriteMoviesAsync(Guid UserId);

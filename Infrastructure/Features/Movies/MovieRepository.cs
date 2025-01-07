@@ -139,6 +139,22 @@ public class MovieRepository : IMovieRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Movie>> GetPaginatedMovies(int PageNumber, int PageSize)
+    {
+        return await _context.Movies
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Person)
+            .Include(x=>x.Cast)
+            .ThenInclude(x=>x.Reviews)
+            .Include(x=>x.Reviews)
+            .ThenInclude(x=>x.User)
+            .Include(x=>x.CountryOfMovie)
+            .ThenInclude(x=>x.Country)
+            .Skip((PageNumber - 1) * PageSize)
+            .Take(PageSize)
+            .ToListAsync();
+    }
+
     public async Task AddFavoriteMovieAsync(Guid UserId, Guid MovieId, Guid Id)
     {
         var movieFav = new FavoriteMovies()
