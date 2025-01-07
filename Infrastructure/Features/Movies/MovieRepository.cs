@@ -231,4 +231,11 @@ public class MovieRepository : IMovieRepository
     {
         return await _context.WatchLaterMovies.AnyAsync(x=>x.UserId==userId && x.MovieId==movieId);
     }
+
+    public async Task<bool> AddRangeOfMovies(IEnumerable<Movie> movies)
+    {
+        await _context.Movies.AddRangeAsync(movies);
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }

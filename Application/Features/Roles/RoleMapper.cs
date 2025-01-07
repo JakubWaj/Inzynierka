@@ -16,7 +16,7 @@ public static class RoleMapper
             MovieId = review.MovieId,
             MovieProductionRole = review.MovieProductionRole,
             Character = review.Character,
-            Score = (review.Reviews.Count>0? review.Reviews.Average(x => x.Rating):0),
+            Score = (review.Reviews.Count>0? review.Reviews.Where(x=>x.Rating>0).Average(x => x.Rating):0),
             NumberOfReviews = review.Reviews.Count,
             Movie = review.Movie.ToDtoModel(),
             Person = review.Person.ToDto(),

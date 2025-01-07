@@ -23,4 +23,8 @@ public enum Genre
     Przygodowy,
     Thriller,
     Musical,
+    Inny  
+    
+    ,Kryminal,Komedia,Historyczny,Familijny,Horror,Tajemnica,Muzyczny
+
 }

@@ -16,4 +16,6 @@ public class Movie
     public ICollection<Role> Cast { get; set; }
     public ICollection<Review> Reviews { get; set; }
     public string? Image { get; set; }
+    public int Tmdb_Id { get; set; }
+    public decimal Popularity { get; set; }
 }

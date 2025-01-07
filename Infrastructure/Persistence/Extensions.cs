@@ -15,6 +15,7 @@ public static class Extensions
         services.Configure<SqlServerOptions>(configuration.GetRequiredSection(SqlServerOptions));
         var databaseOptions = configuration.GetOptions<SqlServerOptions>(SqlServerOptions);
         services.AddScoped<IMockUsers, MockUsers>();
+        services.AddScoped<ISeeder, Seeder>();
         services.AddDbContext<MoviesDbContext>(opt => {
                 opt.UseNpgsql(databaseOptions.ConnectionString); });
         return services;

@@ -1,5 +1,7 @@
 ﻿using API.Controllers;
 using Application.Abstraction;
+using Application.Features.Movies;
+using Application.Features.Movies.Commands.AddFewMovies;
 using Application.Features.Movies.Commands.AddMovieToFavorites;
 using Application.Features.Movies.Commands.AddMovieToWatchList;
 using Application.Features.Movies.Commands.CreateMovie;
@@ -16,8 +18,11 @@ using Application.Features.Movies.Queries.GetUsersWatchLaterList;
 using Application.Features.Movies.Queries.SearchMovieByTitle;
 using Application.Features.Movies.Queries.SearchMovieByYear;
 using Application.Features.Movies.Queries.SearchMoviesByGenres;
+using Infrastructure;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace API.Features.Movie;
 
@@ -25,11 +30,13 @@ public class MovieController : BaseController
 {
     private readonly IQueryDispatcher _queryDispatcher;
     private readonly ICommandDispatcher _commandDispatcher;
+    private readonly ISeeder _context;
 
-    public MovieController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+    public MovieController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher,ISeeder _context)
     {
         _queryDispatcher = queryDispatcher;
         _commandDispatcher = commandDispatcher;
+        this._context = _context;
     }
 
 
@@ -258,5 +265,11 @@ public class MovieController : BaseController
         var result = await _queryDispatcher.SendAsync(query);
         return Ok(result);
     }
-     
+    [HttpPost("Seed")]
+    public async Task<IActionResult> AddFewMovies()
+    {
+        await _context.Seed();
+        return NoContent();
+    }
+    
 }

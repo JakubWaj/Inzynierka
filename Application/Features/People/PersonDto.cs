@@ -12,6 +12,8 @@ public record PersonDto(
     string Image,
     DateTime BirthDate,
     string Biography,
+    double Score,
+    int NumberOfReviews,
     IEnumerable<PersonRolesDto> Roles);
 
 public record PersonRolesDto(

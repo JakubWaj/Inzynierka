@@ -40,27 +40,27 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("049f7282-704f-496d-968d-3fcea78d3210"),
+                            Id = new Guid("6bed9685-887f-4bd5-8d3f-9840cffa644b"),
                             Name = "United States"
                         },
                         new
                         {
-                            Id = new Guid("71369f56-81d5-479f-a1f2-715f7bb1c5d8"),
+                            Id = new Guid("145805bc-90a5-4a9a-8fa8-7af6ab84b8b1"),
                             Name = "Poland"
                         },
                         new
                         {
-                            Id = new Guid("7709d604-41bb-4da0-9a97-b6d9ea4e5aa8"),
+                            Id = new Guid("61654f41-705a-48a1-a278-3abbd44e2324"),
                             Name = "Japan"
                         },
                         new
                         {
-                            Id = new Guid("79b81560-7c0f-4437-ac96-0b79107f8fbf"),
+                            Id = new Guid("c3978434-3ea9-40df-a333-1972d0b319dc"),
                             Name = "United Kingdom"
                         },
                         new
                         {
-                            Id = new Guid("5d137c45-1820-4179-939c-8d3398945d24"),
+                            Id = new Guid("b4285968-661f-46aa-81c1-e88eaafe75db"),
                             Name = "Canada"
                         });
                 });
@@ -109,6 +109,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("text");
 
+                    b.Property<decimal>("Popularity")
+                        .HasColumnType("numeric");
+
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("date");
 
@@ -116,6 +119,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
+
+                    b.Property<int>("Tmdb_Id")
+                        .HasColumnType("integer");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
@@ -134,53 +140,63 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c519b60b-9c7f-4a7c-ab91-bcad634804af"),
+                            Id = new Guid("9f360574-4a08-4b1e-87db-d774d4260be5"),
                             BoxOffice = 829895144,
                             Description = "A thief who steals corporate secrets through dream-sharing technology is tasked with planting an idea into a target's subconscious.",
                             Duration = 148,
                             Genre = 11,
+                            Popularity = 0m,
                             ReleaseDate = new DateTime(2010, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Inception"
+                            Title = "Inception",
+                            Tmdb_Id = 0
                         },
                         new
                         {
-                            Id = new Guid("e98c57fb-395e-40bb-ac20-0a8a378fb2ab"),
+                            Id = new Guid("f0ba6810-2c78-4840-a80d-6d0a2fb78b68"),
                             BoxOffice = 361000000,
                             Description = "Two teenagers share a profound connection after discovering they are swapping bodies.",
                             Duration = 106,
                             Genre = 3,
+                            Popularity = 0m,
                             ReleaseDate = new DateTime(2016, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Your Name"
+                            Title = "Your Name",
+                            Tmdb_Id = 0
                         },
                         new
                         {
-                            Id = new Guid("5f6ec42c-a26f-4319-b657-c04ce97077e5"),
+                            Id = new Guid("de07043b-fdfc-468f-9e3e-f7fcfb10f4c6"),
                             BoxOffice = 466000000,
                             Description = "A hacker discovers the shocking truth about his world and his role in the fight to save humanity.",
                             Duration = 136,
                             Genre = 11,
+                            Popularity = 0m,
                             ReleaseDate = new DateTime(1999, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "The Matrix"
+                            Title = "The Matrix",
+                            Tmdb_Id = 0
                         },
                         new
                         {
-                            Id = new Guid("69b1f1da-a63b-45a5-8e5e-3831194d43fd"),
+                            Id = new Guid("7d41ddb3-1366-4dbf-8809-f5c3bb6af883"),
                             BoxOffice = 701729206,
                             Description = "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
                             Duration = 169,
                             Genre = 11,
+                            Popularity = 0m,
                             ReleaseDate = new DateTime(2014, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Interstellar"
+                            Title = "Interstellar",
+                            Tmdb_Id = 0
                         },
                         new
                         {
-                            Id = new Guid("ec33ad72-61e1-4412-8afb-c1de726a2337"),
+                            Id = new Guid("2ce62ae7-f5ee-479c-9794-8965321c7ae3"),
                             BoxOffice = 395800000,
                             Description = "A young girl becomes trapped in a mysterious world of spirits and must find her way home.",
                             Duration = 125,
                             Genre = 3,
+                            Popularity = 0m,
                             ReleaseDate = new DateTime(2001, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Spirited Away"
+                            Title = "Spirited Away",
+                            Tmdb_Id = 0
                         });
                 });
 
@@ -201,28 +217,28 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            MovieId = new Guid("c519b60b-9c7f-4a7c-ab91-bcad634804af"),
-                            CountryId = new Guid("049f7282-704f-496d-968d-3fcea78d3210")
+                            MovieId = new Guid("9f360574-4a08-4b1e-87db-d774d4260be5"),
+                            CountryId = new Guid("6bed9685-887f-4bd5-8d3f-9840cffa644b")
                         },
                         new
                         {
-                            MovieId = new Guid("e98c57fb-395e-40bb-ac20-0a8a378fb2ab"),
-                            CountryId = new Guid("7709d604-41bb-4da0-9a97-b6d9ea4e5aa8")
+                            MovieId = new Guid("f0ba6810-2c78-4840-a80d-6d0a2fb78b68"),
+                            CountryId = new Guid("61654f41-705a-48a1-a278-3abbd44e2324")
                         },
                         new
                         {
-                            MovieId = new Guid("5f6ec42c-a26f-4319-b657-c04ce97077e5"),
-                            CountryId = new Guid("049f7282-704f-496d-968d-3fcea78d3210")
+                            MovieId = new Guid("de07043b-fdfc-468f-9e3e-f7fcfb10f4c6"),
+                            CountryId = new Guid("6bed9685-887f-4bd5-8d3f-9840cffa644b")
                         },
                         new
                         {
-                            MovieId = new Guid("69b1f1da-a63b-45a5-8e5e-3831194d43fd"),
-                            CountryId = new Guid("71369f56-81d5-479f-a1f2-715f7bb1c5d8")
+                            MovieId = new Guid("7d41ddb3-1366-4dbf-8809-f5c3bb6af883"),
+                            CountryId = new Guid("145805bc-90a5-4a9a-8fa8-7af6ab84b8b1")
                         },
                         new
                         {
-                            MovieId = new Guid("ec33ad72-61e1-4412-8afb-c1de726a2337"),
-                            CountryId = new Guid("7709d604-41bb-4da0-9a97-b6d9ea4e5aa8")
+                            MovieId = new Guid("2ce62ae7-f5ee-479c-9794-8965321c7ae3"),
+                            CountryId = new Guid("61654f41-705a-48a1-a278-3abbd44e2324")
                         });
                 });
 
@@ -260,7 +276,7 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ff9cfb8b-0c91-438e-808e-d262df5d7f23"),
+                            Id = new Guid("f1ac190f-8bd7-4edd-ac99-9ad0b8a1a95d"),
                             Biography = "An American actor and film producer.",
                             BirthDate = new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Leonardo",
@@ -268,7 +284,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ded56c9f-e056-463b-abd3-047d19580514"),
+                            Id = new Guid("414eab0c-a88f-44b6-9458-8a2f0ee0fc89"),
                             Biography = "A Japanese animator, filmmaker, and manga artist.",
                             BirthDate = new DateTime(1973, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Makoto",
@@ -276,7 +292,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("aeba0617-b0ac-4b30-b186-c792be5cd702"),
+                            Id = new Guid("6bf1f546-1ca2-4daa-87e7-405e5dfbd7ef"),
                             Biography = "An actor known for his roles in The Matrix and John Wick.",
                             BirthDate = new DateTime(1964, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Keanu",
@@ -284,7 +300,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("04eb6adb-3fba-4082-8e91-6c7aa5689eaa"),
+                            Id = new Guid("21570144-4bf3-4a71-b50d-a1d03fe6c44b"),
                             Biography = "A British-American film director, producer, and screenwriter.",
                             BirthDate = new DateTime(1970, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Christopher",
@@ -292,7 +308,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("73368f36-366a-4494-b362-5660117e268a"),
+                            Id = new Guid("673bced8-fc8d-473c-900a-316a7fa14cdf"),
                             Biography = "A legendary Japanese animator and filmmaker.",
                             BirthDate = new DateTime(1941, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Hayao",
@@ -334,47 +350,47 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            MovieId = new Guid("c519b60b-9c7f-4a7c-ab91-bcad634804af"),
-                            UserId = new Guid("07b05706-888e-4554-bea9-5fdc1c46c4da"),
+                            MovieId = new Guid("9f360574-4a08-4b1e-87db-d774d4260be5"),
+                            UserId = new Guid("f87fca60-d4f9-41b5-a008-18224ecfdd23"),
                             Comment = "Amazing movie with a mind-blowing plot!",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Id = new Guid("d9f63c4c-8fce-4ddd-b0af-336a9f536cf1"),
+                            Id = new Guid("91e0c611-1545-485f-b614-a29d5ba13b80"),
                             Rating = 9
                         },
                         new
                         {
-                            MovieId = new Guid("e98c57fb-395e-40bb-ac20-0a8a378fb2ab"),
-                            UserId = new Guid("d1826578-75f9-43f2-a0f5-48e19bfa9542"),
+                            MovieId = new Guid("f0ba6810-2c78-4840-a80d-6d0a2fb78b68"),
+                            UserId = new Guid("b41a1fe6-4693-48f5-b808-c780724e47a8"),
                             Comment = "Beautifully animated and emotionally resonant.",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Id = new Guid("e83412cb-637b-43e4-830b-0ada140729ca"),
+                            Id = new Guid("75c7f58b-a265-4d6f-b5d4-70c9c53f364e"),
                             Rating = 10
                         },
                         new
                         {
-                            MovieId = new Guid("5f6ec42c-a26f-4319-b657-c04ce97077e5"),
-                            UserId = new Guid("697a7cc3-bce9-4834-ab85-47b406c19900"),
+                            MovieId = new Guid("de07043b-fdfc-468f-9e3e-f7fcfb10f4c6"),
+                            UserId = new Guid("439b6788-27b2-444f-b5ac-a79179305db2"),
                             Comment = "A groundbreaking film with iconic visuals.",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Id = new Guid("65f6f442-e3fc-4da1-9bd2-90bfccff657f"),
+                            Id = new Guid("0c508fd9-8c4b-4fa6-a835-cef505f526fb"),
                             Rating = 10
                         },
                         new
                         {
-                            MovieId = new Guid("69b1f1da-a63b-45a5-8e5e-3831194d43fd"),
-                            UserId = new Guid("1066ad9b-95ac-4163-95b2-121faf9578ce"),
+                            MovieId = new Guid("7d41ddb3-1366-4dbf-8809-f5c3bb6af883"),
+                            UserId = new Guid("abe9864a-684a-48ba-8243-26ad20093700"),
                             Comment = "A mesmerizing journey through space and time.",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Id = new Guid("d3320c0e-e5d5-4fe5-9db1-c817ea421560"),
+                            Id = new Guid("d07962ea-5958-48fc-b0c4-18bae0d919ed"),
                             Rating = 9
                         },
                         new
                         {
-                            MovieId = new Guid("ec33ad72-61e1-4412-8afb-c1de726a2337"),
-                            UserId = new Guid("c2ebb513-3286-4f2e-b5e6-bfc7e9e21ab9"),
+                            MovieId = new Guid("2ce62ae7-f5ee-479c-9794-8965321c7ae3"),
+                            UserId = new Guid("3526d2b5-96d9-4091-88ca-e22ddcc36022"),
                             Comment = "A masterpiece of animation and storytelling.",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Id = new Guid("b553d513-b7cc-441c-aad8-704ffe486934"),
+                            Id = new Guid("e870d114-8b9b-4f24-9b1d-3281c0c5bf98"),
                             Rating = 10
                         });
                 });
@@ -409,40 +425,40 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c9ebd325-a5e2-47e2-a6ef-b380a71136e9"),
+                            Id = new Guid("e0262992-175b-46e6-97df-5d9c72e870fd"),
                             Character = "Dom Cobb",
-                            MovieId = new Guid("c519b60b-9c7f-4a7c-ab91-bcad634804af"),
+                            MovieId = new Guid("9f360574-4a08-4b1e-87db-d774d4260be5"),
                             MovieProductionRole = 0,
-                            PersonId = new Guid("ff9cfb8b-0c91-438e-808e-d262df5d7f23")
+                            PersonId = new Guid("f1ac190f-8bd7-4edd-ac99-9ad0b8a1a95d")
                         },
                         new
                         {
-                            Id = new Guid("9f7fde34-f5c4-4751-af55-16450ca78958"),
-                            MovieId = new Guid("e98c57fb-395e-40bb-ac20-0a8a378fb2ab"),
+                            Id = new Guid("c00df965-15c3-4e27-8643-09bffadcb313"),
+                            MovieId = new Guid("f0ba6810-2c78-4840-a80d-6d0a2fb78b68"),
                             MovieProductionRole = 1,
-                            PersonId = new Guid("ded56c9f-e056-463b-abd3-047d19580514")
+                            PersonId = new Guid("414eab0c-a88f-44b6-9458-8a2f0ee0fc89")
                         },
                         new
                         {
-                            Id = new Guid("bf3648ca-22ae-4545-b04c-5d8fb630dfaf"),
+                            Id = new Guid("2ce4c717-d391-41b7-9908-30b046889fc7"),
                             Character = "Neo",
-                            MovieId = new Guid("5f6ec42c-a26f-4319-b657-c04ce97077e5"),
+                            MovieId = new Guid("de07043b-fdfc-468f-9e3e-f7fcfb10f4c6"),
                             MovieProductionRole = 0,
-                            PersonId = new Guid("aeba0617-b0ac-4b30-b186-c792be5cd702")
+                            PersonId = new Guid("6bf1f546-1ca2-4daa-87e7-405e5dfbd7ef")
                         },
                         new
                         {
-                            Id = new Guid("8e8356a4-7e39-43f8-b050-e7e6051e07ba"),
-                            MovieId = new Guid("69b1f1da-a63b-45a5-8e5e-3831194d43fd"),
+                            Id = new Guid("d1e85235-df9b-4a38-93e5-99eba5a1691a"),
+                            MovieId = new Guid("7d41ddb3-1366-4dbf-8809-f5c3bb6af883"),
                             MovieProductionRole = 1,
-                            PersonId = new Guid("04eb6adb-3fba-4082-8e91-6c7aa5689eaa")
+                            PersonId = new Guid("21570144-4bf3-4a71-b50d-a1d03fe6c44b")
                         },
                         new
                         {
-                            Id = new Guid("9dd3bdb8-0895-4024-8361-1c322a972b91"),
-                            MovieId = new Guid("ec33ad72-61e1-4412-8afb-c1de726a2337"),
+                            Id = new Guid("8495dd65-4bb2-442a-8092-91110e9addce"),
+                            MovieId = new Guid("2ce62ae7-f5ee-479c-9794-8965321c7ae3"),
                             MovieProductionRole = 1,
-                            PersonId = new Guid("73368f36-366a-4494-b362-5660117e268a")
+                            PersonId = new Guid("673bced8-fc8d-473c-900a-316a7fa14cdf")
                         });
                 });
 
@@ -504,38 +520,38 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("07b05706-888e-4554-bea9-5fdc1c46c4da"),
+                            Id = new Guid("f87fca60-d4f9-41b5-a008-18224ecfdd23"),
                             Email = "user1@example.com",
                             Login = "user1",
-                            Password = "AQAAAAIAAYagAAAAEFApde+LguRu/RDFHLsSCm/34PNoGHflOOIe/YB+ZA7A/Sr3W3syeDs7J1of6J4J/g=="
+                            Password = "AQAAAAIAAYagAAAAEB/qF65qpvgkgbfQcEhp7uszLOiyYjwI61UPb6Qndv8SHHRaqe6cwiNSI4Rt62adcw=="
                         },
                         new
                         {
-                            Id = new Guid("d1826578-75f9-43f2-a0f5-48e19bfa9542"),
+                            Id = new Guid("b41a1fe6-4693-48f5-b808-c780724e47a8"),
                             Email = "user2@example.com",
                             Login = "user2",
-                            Password = "AQAAAAIAAYagAAAAEBCsZO629LzOeeJYRvsOPmsJtJeP0BL3n6aXRumFHlwerZ9RQ2fxdonE3OnSgyfgEw=="
+                            Password = "AQAAAAIAAYagAAAAEMzukbb2v1p/80HUm5qfKPDiXolCSf8m88ukoRqQrXBWC0uKQxGSW8Md6cOKnvuymw=="
                         },
                         new
                         {
-                            Id = new Guid("697a7cc3-bce9-4834-ab85-47b406c19900"),
+                            Id = new Guid("439b6788-27b2-444f-b5ac-a79179305db2"),
                             Email = "user3@example.com",
                             Login = "user3",
-                            Password = "AQAAAAIAAYagAAAAELAuvQESOwzQ9YV6PdnTME0z3wt1wrOhOvuV96p4zPMx13ofixADOi+bjN+5nGW5LQ=="
+                            Password = "AQAAAAIAAYagAAAAENDZXc/OT5Fj8CabysBSd45a/zb0cmHsMacsvjg3t1Mg+0y3F3WCbGYYv0k26/L+mQ=="
                         },
                         new
                         {
-                            Id = new Guid("1066ad9b-95ac-4163-95b2-121faf9578ce"),
+                            Id = new Guid("abe9864a-684a-48ba-8243-26ad20093700"),
                             Email = "user4@example.com",
                             Login = "user4",
-                            Password = "AQAAAAIAAYagAAAAED3auLxQQh6locyE/U4vCirET2VQR3qaNI12yBWAyxhcRp9dexFI8daBCHQfI9z3DQ=="
+                            Password = "AQAAAAIAAYagAAAAEI85CFWZza+QsFzI8ehZRxp2b5BNxIzE9rz83mx7J7Fg0QQqAp6GDrhlCVcMRIK38w=="
                         },
                         new
                         {
-                            Id = new Guid("c2ebb513-3286-4f2e-b5e6-bfc7e9e21ab9"),
+                            Id = new Guid("3526d2b5-96d9-4091-88ca-e22ddcc36022"),
                             Email = "user5@example.com",
                             Login = "user5",
-                            Password = "AQAAAAIAAYagAAAAEIqF+VYsixsa7cyAsZw/boCqqmzuUYqD6CPDNQXt+ud6tgFzPXoS82sWDs6c/MaNfQ=="
+                            Password = "AQAAAAIAAYagAAAAEJYy4dVR5sLCL+MaCY9xanLD5/8JiBVTVqRUV0DubOH+YnikW2GytAu00BgknZQ7Tw=="
                         });
                 });
 

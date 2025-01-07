@@ -24,4 +24,5 @@ public interface IMovieRepository
     Task<IEnumerable<Movie>> GetUsersWatchedMoviesync(Guid RoleId);
     Task<bool> FavMovieExistsAsync(Guid userId, Guid movieId);
     Task<bool> WatchLaterMovieExistsAsync(Guid userId, Guid movieId);
+    Task<bool> AddRangeOfMovies(IEnumerable<Movie> movies);
 }

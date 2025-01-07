@@ -14,6 +14,7 @@ using Infrastructure.Features.Reviews;
 using Infrastructure.Features.RoleReviews;
 using Infrastructure.Features.Roles;
 using Infrastructure.Features.Users;
+using Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Features;
@@ -31,7 +32,6 @@ public static class Extensions
         services.AddScoped<IMovieCountryRepository, MovieCountryRepository>();
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IRoleReviewRepository, RoleReviewRepository>();
-        
         return services;
     }
 }

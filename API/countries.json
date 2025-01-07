@@ -1,0 +1,318 @@
+[
+  {
+    "Id": "20b653e6-7acb-4158-93a5-51e3b9e6db37",
+    "Name": "US"
+  },
+  {
+    "Id": "09a5410c-18f4-4776-86d4-b9796b64378d",
+    "Name": "IN"
+  },
+  {
+    "Id": "e70d5b14-3b46-441e-bcaf-8be1da66781b",
+    "Name": "MX"
+  },
+  {
+    "Id": "73169d62-011c-4e08-ad3f-ab4f6b28f2e1",
+    "Name": "JP"
+  },
+  {
+    "Id": "5735fd36-43ae-4dfe-bef6-3b492dfd747b",
+    "Name": "KR"
+  },
+  {
+    "Id": "73a3da43-3f6a-45ad-9ac0-c7737781557b",
+    "Name": "IT"
+  },
+  {
+    "Id": "e987a5b7-95bc-41d3-a763-0b05e421a2a8",
+    "Name": "BR"
+  },
+  {
+    "Id": "939f8884-966d-4563-b1c3-47a4de275a14",
+    "Name": "FR"
+  },
+  {
+    "Id": "5406e27f-c1c3-4194-811f-1416ba1e3d01",
+    "Name": "IE"
+  },
+  {
+    "Id": "5ca81758-d747-4d8a-b773-a0e6e7d20e17",
+    "Name": "LU"
+  },
+  {
+    "Id": "38f37321-9b55-494f-a2f9-1081887f6cf8",
+    "Name": "DE"
+  },
+  {
+    "Id": "f8d564d2-6728-47d7-8c61-aeb4cbd3f59e",
+    "Name": "PL"
+  },
+  {
+    "Id": "4fca02a8-2678-4779-b8f2-54bc04eb0611",
+    "Name": "GB"
+  },
+  {
+    "Id": "67f6dac5-46f0-4245-be68-bc7c7e22c079",
+    "Name": "EC"
+  },
+  {
+    "Id": "49fc6f3c-920c-4ef3-9993-3dd1cbb802f2",
+    "Name": "SU"
+  },
+  {
+    "Id": "2c056142-eeeb-408e-8b95-cd0541ff4c00",
+    "Name": "CN"
+  },
+  {
+    "Id": "15b3ac82-605d-44a3-a9bf-72d09e0a16ab",
+    "Name": "TR"
+  },
+  {
+    "Id": "286ac335-9bc4-4c06-bcd5-257f7f22c0f4",
+    "Name": "CA"
+  },
+  {
+    "Id": "52778d21-0c05-4daa-9d21-1fc9444482d7",
+    "Name": "ES"
+  },
+  {
+    "Id": "64d795db-b69f-4b4e-9d4b-3d04c6c2ccd0",
+    "Name": "SE"
+  },
+  {
+    "Id": "880a8354-26bf-47aa-8c89-2e7232d73d41",
+    "Name": "LB"
+  },
+  {
+    "Id": "bcbb166c-2339-47b1-8fe1-22e201350f10",
+    "Name": "AU"
+  },
+  {
+    "Id": "01739780-d75f-4089-83a1-c2d87d496977",
+    "Name": "HK"
+  },
+  {
+    "Id": "8304a2b1-7d86-4e76-86c0-f96641449c41",
+    "Name": "DK"
+  },
+  {
+    "Id": "ba6b2437-5f5f-4f28-804b-d328e77bfc0f",
+    "Name": "DM"
+  },
+  {
+    "Id": "c0080c65-158c-495a-98f5-c6a794c9cc27",
+    "Name": "NL"
+  },
+  {
+    "Id": "9747ff61-b609-40e3-bd20-0ef31cc84d63",
+    "Name": "AR"
+  },
+  {
+    "Id": "dc2ba01c-1713-46d6-b562-41df291cdc93",
+    "Name": "BE"
+  },
+  {
+    "Id": "da274bbd-8539-4609-bb8f-29b8311dd228",
+    "Name": "TH"
+  },
+  {
+    "Id": "1abc8d1f-6efe-4f06-8815-1a71d868a2bc",
+    "Name": "DZ"
+  },
+  {
+    "Id": "f0c10717-0873-4443-8272-66c948cee79b",
+    "Name": "IR"
+  },
+  {
+    "Id": "8062562a-fd3a-40ac-aed6-128b4d6272bb",
+    "Name": "MW"
+  },
+  {
+    "Id": "d59ec82f-25a2-4c06-b907-e8497c7a2d14",
+    "Name": "TW"
+  },
+  {
+    "Id": "76f87968-b414-40bf-9a75-b414a4fb6ae0",
+    "Name": "CZ"
+  },
+  {
+    "Id": "a8fe82df-6a97-4f11-8c99-c31cb4414074",
+    "Name": "HU"
+  },
+  {
+    "Id": "df66f10a-bf83-41d2-bebd-57f5f9cf55f5",
+    "Name": "AT"
+  },
+  {
+    "Id": "dcc5e78f-8ead-4cf8-b882-bbc82df95b12",
+    "Name": "YU"
+  },
+  {
+    "Id": "b6583fea-bd9c-4e1d-a547-e3ed00fe5dc8",
+    "Name": "ZA"
+  },
+  {
+    "Id": "9ff918d8-e018-481b-91d1-718d6a66ceab",
+    "Name": "CH"
+  },
+  {
+    "Id": "ec3988d7-49a2-47c6-9718-73b2bdd263db",
+    "Name": "NZ"
+  },
+  {
+    "Id": "00b6cc31-95f1-4b8c-9dba-945f3047bb9b",
+    "Name": "EE"
+  },
+  {
+    "Id": "80fd83e3-1b4c-43e5-b545-dd918b1716ef",
+    "Name": "CO"
+  },
+  {
+    "Id": "8b45bef8-7d3d-4c7d-8475-f873df80bbf3",
+    "Name": "RS"
+  },
+  {
+    "Id": "094ee1a4-b983-4dfd-affd-ebc1e2914edd",
+    "Name": "RU"
+  },
+  {
+    "Id": "237a592c-2501-4494-8997-deeb24e48858",
+    "Name": "ID"
+  },
+  {
+    "Id": "8d19543a-e4d3-49ca-ae80-02d86367608a",
+    "Name": "NO"
+  },
+  {
+    "Id": "6708770d-0523-474a-b0e3-854c8e156261",
+    "Name": "XC"
+  },
+  {
+    "Id": "897e6471-cc37-413b-bf18-0eabcb349dcd",
+    "Name": "SG"
+  },
+  {
+    "Id": "7898d0f1-6f01-4a18-9d5a-f60081296736",
+    "Name": "RO"
+  },
+  {
+    "Id": "89859225-bf8b-41f9-b275-a85946d3e277",
+    "Name": "BY"
+  },
+  {
+    "Id": "19ff9c21-7af2-4650-99bd-97d6a40824ed",
+    "Name": "BA"
+  },
+  {
+    "Id": "60ec4034-6d5a-4ffb-ade0-7f49c887499d",
+    "Name": "GR"
+  },
+  {
+    "Id": "ee38bf9a-fa49-4d42-a9fb-a262e6c6c43b",
+    "Name": "UY"
+  },
+  {
+    "Id": "b7ca2610-a6d8-4bb9-95ac-fe97fc4a3ffd",
+    "Name": "FI"
+  },
+  {
+    "Id": "09347903-ece2-4ad3-99ed-afc6e044ce71",
+    "Name": "UA"
+  },
+  {
+    "Id": "ba8c65bb-7b21-45d9-9e10-6ee17af2ccdb",
+    "Name": "AE"
+  },
+  {
+    "Id": "74cb534b-f189-49fc-ab08-aecc96ce807f",
+    "Name": "SA"
+  },
+  {
+    "Id": "602d5796-e1d8-411d-af1c-514e227f1145",
+    "Name": "BW"
+  },
+  {
+    "Id": "c642c653-1051-4c23-890b-e115cab3aa6e",
+    "Name": "PT"
+  },
+  {
+    "Id": "7b7a3b8c-5041-4032-89dd-ca0eb2deb037",
+    "Name": "IS"
+  },
+  {
+    "Id": "a9023902-a228-4aaa-9e0a-fad554334e3e",
+    "Name": "CL"
+  },
+  {
+    "Id": "14022194-9cfe-47e5-8f66-38e4b79b26ee",
+    "Name": "RE"
+  },
+  {
+    "Id": "cdf10d37-c5cc-4100-b61c-36e1ddb77822",
+    "Name": "PE"
+  },
+  {
+    "Id": "c39b6c41-97c5-4ea2-9d83-abe6d5ecaadc",
+    "Name": "BO"
+  },
+  {
+    "Id": "f53ccfc4-577e-405f-959d-28e12a9b0f82",
+    "Name": "KH"
+  },
+  {
+    "Id": "07325b47-c850-4cc5-9b4b-d2d9a493ee8f",
+    "Name": "VE"
+  },
+  {
+    "Id": "374e34f0-46c2-4fb7-92d8-7ff5b3decfe7",
+    "Name": "KZ"
+  },
+  {
+    "Id": "cb5dcf2a-11d3-4bbc-8e04-4dbf8ff200d4",
+    "Name": "IL"
+  },
+  {
+    "Id": "532e32fe-e722-4197-8f0e-47db9e4a1549",
+    "Name": "MA"
+  },
+  {
+    "Id": "124c5264-f898-421f-8a64-f727b280529b",
+    "Name": "GT"
+  },
+  {
+    "Id": "ecd852e1-588c-482b-a1d1-61d11b47a3ad",
+    "Name": "PH"
+  },
+  {
+    "Id": "721336db-ea2d-4b1b-9771-98b240cdd70d",
+    "Name": "BG"
+  },
+  {
+    "Id": "e42f9b90-c5e7-4364-a586-34cf24d9827a",
+    "Name": "AL"
+  },
+  {
+    "Id": "ed486436-c661-4672-b2f4-8dc66eca676c",
+    "Name": "VN"
+  },
+  {
+    "Id": "c7f9376e-c54a-49e0-b695-eab681a89a00",
+    "Name": "LT"
+  },
+  {
+    "Id": "5556c13d-480f-4633-bcf2-035a21d4b28d",
+    "Name": "CY"
+  },
+  {
+    "Id": "c498512c-e88d-4fa5-b49b-1077e2fd0c93",
+    "Name": "VI"
+  },
+  {
+    "Id": "62cf52d0-8ed2-4995-803b-636ff5ba825d",
+    "Name": "MT"
+  },
+  {
+    "Id": "bd692b8f-767f-4545-8de8-430e41f253d3",
+    "Name": "AW"
+  }
+]

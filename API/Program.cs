@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
 using Application;
+using Application.Features.Country;
 using Infrastructure;
 using Infrastructure.Middleware;
+using Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,6 +58,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
