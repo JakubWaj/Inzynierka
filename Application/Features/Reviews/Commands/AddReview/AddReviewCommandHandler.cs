@@ -34,4 +34,4 @@ public class AddReviewCommandHandler : ICommandHandler<AddReviewCommand, bool>
         await _reviewRepository.AddAsync(review);
         return true;
     }
-}
+} 

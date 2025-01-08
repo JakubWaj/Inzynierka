@@ -13,6 +13,7 @@ using Application.Features.Users.Queries.GetFriendsRequests;
 using Application.Features.Users.Queries.GetUser;
 using Application.Features.Users.Queries.GetUserByEmail;
 using Application.Features.Users.Queries.GetUserByLogin;
+using Application.Features.Users.Queries.GetUsersActivity;
 using Application.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -208,6 +209,27 @@ public class UserController : BaseController
         };
         var result = await _commandDispatcher.SendAsync(command);
         return Ok(result);
+    }
+    
+    [HttpGet("UsersActivity/{id}")]
+    public async Task<ActionResult<ActivityDTO>> GetUsersActivity(Guid id)
+    {
+        var query = new GetUsersActivityQuery(){UserId = id};
+        var user = await _queryDispatcher.SendAsync(query);
+        return Ok(user);
+    }
+    [HttpGet("FriendsActivity")]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<ActivityDTO>>> GetFriendsActivity()
+    {
+        if(User.Identity?.Name is null)
+        {
+            return NotFound();
+        }
+        var guid = Guid.Parse(User.Identity?.Name);
+        var query = new GetUsersActivityQuery(){UserId = guid};
+        var user = await _queryDispatcher.SendAsync(query);
+        return Ok(user);
     }
 }
 

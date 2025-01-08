@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class WatchLaterMovies
+namespace Domain.Entities;
+
+public class WatchLaterMovies : AuditableEntity
 {
     public Guid Id { get; set; }
     public virtual Movie Movie { get; set; }

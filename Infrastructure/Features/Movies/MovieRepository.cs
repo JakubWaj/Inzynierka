@@ -161,7 +161,8 @@ public class MovieRepository : IMovieRepository
         {
             UserId = UserId,
             MovieId = MovieId,
-            Id = Id
+            Id = Id,
+            CreatedAt = DateTime.UtcNow
         };
         await _context.FavoriteMovies.AddAsync(movieFav);
         await _context.SaveChangesAsync();
@@ -199,7 +200,8 @@ public class MovieRepository : IMovieRepository
         {
             UserId = UserId,
             MovieId = MovieId,
-            Id = Id
+            Id = Id,
+            CreatedAt = DateTime.UtcNow
         };
         await _context.WatchLaterMovies.AddAsync(movieWatchLater);
         await _context.SaveChangesAsync();
