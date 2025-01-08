@@ -227,8 +227,14 @@ public class UserController : BaseController
             return NotFound();
         }
         var guid = Guid.Parse(User.Identity?.Name);
-        var query = new GetUsersActivityQuery(){UserId = guid};
-        var user = await _queryDispatcher.SendAsync(query);
+        var queryFriends = new GetFriendsQuery(){Id = guid};
+        var friends = await _queryDispatcher.SendAsync(queryFriends);
+        List<ActivityDTO> user = new();
+        foreach (var friend in friends)
+        {
+            var friendActivity = await _queryDispatcher.SendAsync(new GetUsersActivityQuery(){UserId = friend.Id});
+            user.Add(friendActivity);
+        }
         return Ok(user);
     }
 }

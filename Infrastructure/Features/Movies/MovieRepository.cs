@@ -178,6 +178,7 @@ public class MovieRepository : IMovieRepository
     public async Task<IEnumerable<Movie>> GetFavoriteMoviesAsync(Guid UserId)
     {
         var usersMovies = await _context.FavoriteMovies
+            
             .Where(x=>x.UserId==UserId)
             .Select(x=>x.MovieId)
             .ToListAsync();
